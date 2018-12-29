@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController {
+class TableViewController: UITableViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var budgets = [Budget]()
@@ -30,7 +30,7 @@ class ViewController: UIViewController {
             print("Error loading categories \(error)")
         }
         
-        tablview.reloadData()
+        tableView.reloadData()
         
     }
     
@@ -44,6 +44,13 @@ class ViewController: UIViewController {
         tableView.reloadData()
         
     }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return budgets.count
+    }
+    
+    
 
 
 }

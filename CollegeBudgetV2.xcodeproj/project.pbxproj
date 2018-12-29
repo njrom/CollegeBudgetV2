@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AF0736AF21D0734900CA10B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0736AE21D0734900CA10B7 /* AppDelegate.swift */; };
-		AF0736B121D0734900CA10B7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0736B021D0734900CA10B7 /* ViewController.swift */; };
+		AF0736B121D0734900CA10B7 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0736B021D0734900CA10B7 /* TableViewController.swift */; };
 		AF0736B421D0734900CA10B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF0736B221D0734900CA10B7 /* Main.storyboard */; };
 		AF0736B721D0734900CA10B7 /* CollegeBudgetV2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AF0736B521D0734900CA10B7 /* CollegeBudgetV2.xcdatamodeld */; };
 		AF0736B921D0734A00CA10B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF0736B821D0734A00CA10B7 /* Assets.xcassets */; };
@@ -18,7 +18,7 @@
 /* Begin PBXFileReference section */
 		AF0736AB21D0734900CA10B7 /* CollegeBudgetV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollegeBudgetV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF0736AE21D0734900CA10B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AF0736B021D0734900CA10B7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AF0736B021D0734900CA10B7 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		AF0736B321D0734900CA10B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AF0736B621D0734900CA10B7 /* CollegeBudgetV2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CollegeBudgetV2.xcdatamodel; sourceTree = "<group>"; };
 		AF0736B821D0734A00CA10B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,7 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				AF0736AE21D0734900CA10B7 /* AppDelegate.swift */,
-				AF0736B021D0734900CA10B7 /* ViewController.swift */,
+				AF0736B021D0734900CA10B7 /* TableViewController.swift */,
 				AF0736B221D0734900CA10B7 /* Main.storyboard */,
 				AF0736B821D0734A00CA10B7 /* Assets.xcassets */,
 				AF0736BA21D0734A00CA10B7 /* LaunchScreen.storyboard */,
@@ -138,7 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF0736B121D0734900CA10B7 /* ViewController.swift in Sources */,
+				AF0736B121D0734900CA10B7 /* TableViewController.swift in Sources */,
 				AF0736AF21D0734900CA10B7 /* AppDelegate.swift in Sources */,
 				AF0736B721D0734900CA10B7 /* CollegeBudgetV2.xcdatamodeld in Sources */,
 			);
