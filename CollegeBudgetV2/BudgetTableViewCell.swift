@@ -10,6 +10,12 @@ import UIKit
 
 class BudgetTableViewCell: UITableViewCell {
 
+
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var remainingLabel: UILabel!
+    @IBOutlet weak var progressView: CircularProgressView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
