@@ -13,6 +13,7 @@
 		AF0736B721D0734900CA10B7 /* CollegeBudgetV2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AF0736B521D0734900CA10B7 /* CollegeBudgetV2.xcdatamodeld */; };
 		AF0736B921D0734A00CA10B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF0736B821D0734A00CA10B7 /* Assets.xcassets */; };
 		AF0736BC21D0734A00CA10B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF0736BA21D0734A00CA10B7 /* LaunchScreen.storyboard */; };
+		AF73D26021D83A4800ED98C7 /* BudgetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF73D25F21D83A4800ED98C7 /* BudgetTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		AF0736B821D0734A00CA10B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF0736BB21D0734A00CA10B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF0736BD21D0734A00CA10B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF73D25F21D83A4800ED98C7 /* BudgetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				AF0736BA21D0734A00CA10B7 /* LaunchScreen.storyboard */,
 				AF0736BD21D0734A00CA10B7 /* Info.plist */,
 				AF0736B521D0734900CA10B7 /* CollegeBudgetV2.xcdatamodeld */,
+				AF73D25F21D83A4800ED98C7 /* BudgetTableViewCell.swift */,
 			);
 			path = CollegeBudgetV2;
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 			files = (
 				AF0736B121D0734900CA10B7 /* TableViewController.swift in Sources */,
 				AF0736AF21D0734900CA10B7 /* AppDelegate.swift in Sources */,
+				AF73D26021D83A4800ED98C7 /* BudgetTableViewCell.swift in Sources */,
 				AF0736B721D0734900CA10B7 /* CollegeBudgetV2.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
