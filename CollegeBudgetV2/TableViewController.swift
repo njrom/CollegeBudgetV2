@@ -17,8 +17,16 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        tableView.rowHeight = 80.0
+        // addTestData()
         loadModel()
         
+    }
+    
+    func addTestData() {
+        let budgetEntity = NSEntityDescription.insertNewObject(forEntityName: "Budget", into: context)
+        budgetEntity.setValue("Wegmans", forKey: "name")
+        saveModel()
     }
     
     func loadModel() {
@@ -47,7 +55,16 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        print(budgets.count)
         return budgets.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BudgetCell") as! BudgetTableViewCell
+        print("Called")
+        cell.nameLabel.text = budgets[indexPath.row].name!
+        
+        return cell
     }
     
     

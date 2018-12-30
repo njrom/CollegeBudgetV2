@@ -31,11 +31,11 @@ class CircularProgressView: UIView {
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         bgPath = UIBezierPath()
+        self.backgroundColor = UIColor.clear
         self.simpleShape()
     }
     
-    func simpleShape()
-    {
+    func simpleShape() {
         createCirclePath()
         shapeLayer = CAShapeLayer()
         shapeLayer.path = bgPath.cgPath
@@ -56,8 +56,7 @@ class CircularProgressView: UIView {
         self.layer.addSublayer(progressLayer)
     }
     
-    private func createCirclePath()
-    {
+    private func createCirclePath() {
         
         let x = self.frame.width/2
         let y = self.frame.height/2
