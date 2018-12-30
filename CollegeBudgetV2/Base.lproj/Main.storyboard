@@ -27,12 +27,12 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XxH-Fh-rVH">
-                                            <rect key="frame" x="90" y="10.5" width="78.5" height="36"/>
+                                            <rect key="frame" x="105" y="10.5" width="78.5" height="36"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O4C-Cd-fat">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shopping-cart" translatesAutoresizingMaskIntoConstraints="NO" id="O4C-Cd-fat">
                                             <rect key="frame" x="10" y="5" width="70" height="70"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="70" id="kYk-Mb-aJS"/>
@@ -40,32 +40,32 @@
                                             </constraints>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NYc-UD-rIc" customClass="CircularProgressView" customModule="CollegeBudgetV2" customModuleProvider="target">
-                                            <rect key="frame" x="280" y="5" width="70" height="70"/>
+                                            <rect key="frame" x="285" y="7.5" width="65" height="65"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="70" id="4R5-Gp-6yD"/>
-                                                <constraint firstAttribute="height" constant="70" id="yD3-n2-PSZ"/>
+                                                <constraint firstAttribute="width" constant="65" id="Fyw-3A-IYq"/>
+                                                <constraint firstAttribute="height" constant="65" id="iyd-9g-E6R"/>
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hE1-D8-PEc">
-                                            <rect key="frame" x="100" y="47.5" width="45" height="21"/>
+                                            <rect key="frame" x="115" y="47.5" width="45" height="21"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" red="0.47450980392156861" green="1" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.12293555699481862" green="0.12293555699481862" blue="0.12293555699481862" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="displayP3"/>
                                     <constraints>
-                                        <constraint firstItem="hE1-D8-PEc" firstAttribute="leading" secondItem="O4C-Cd-fat" secondAttribute="trailing" constant="20" id="2gk-mu-sMT"/>
+                                        <constraint firstItem="hE1-D8-PEc" firstAttribute="leading" secondItem="O4C-Cd-fat" secondAttribute="trailing" constant="35" id="2gk-mu-sMT"/>
                                         <constraint firstItem="O4C-Cd-fat" firstAttribute="centerY" secondItem="QRM-wH-JPY" secondAttribute="centerY" id="BT6-qk-Szj"/>
                                         <constraint firstAttribute="trailing" secondItem="NYc-UD-rIc" secondAttribute="trailing" constant="25" id="GAd-r0-lNJ"/>
                                         <constraint firstItem="O4C-Cd-fat" firstAttribute="leading" secondItem="QRM-wH-JPY" secondAttribute="leading" constant="10" id="JrM-Ft-1Kn"/>
                                         <constraint firstItem="hE1-D8-PEc" firstAttribute="top" secondItem="XxH-Fh-rVH" secondAttribute="bottom" constant="1" id="Miu-62-ooW"/>
                                         <constraint firstItem="NYc-UD-rIc" firstAttribute="centerY" secondItem="QRM-wH-JPY" secondAttribute="centerY" id="cHG-jr-VS3"/>
-                                        <constraint firstItem="XxH-Fh-rVH" firstAttribute="leading" secondItem="O4C-Cd-fat" secondAttribute="trailing" constant="10" id="iZl-Fv-GTP"/>
+                                        <constraint firstItem="XxH-Fh-rVH" firstAttribute="leading" secondItem="O4C-Cd-fat" secondAttribute="trailing" constant="25" id="iZl-Fv-GTP"/>
                                         <constraint firstItem="XxH-Fh-rVH" firstAttribute="centerY" secondItem="QRM-wH-JPY" secondAttribute="centerY" multiplier="2:3" constant="2" id="wJE-2Y-s5m"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.35686274509803922" green="0.35686274509803922" blue="0.35686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="iconImageView" destination="O4C-Cd-fat" id="aWj-A8-8s1"/>
                                     <outlet property="nameLabel" destination="XxH-Fh-rVH" id="LUs-1O-9py"/>
@@ -171,4 +171,7 @@
             <point key="canvasLocation" x="-1854" y="-43"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="shopping-cart" width="384" height="384"/>
+    </resources>
 </document>

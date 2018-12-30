@@ -39,14 +39,14 @@ class CircularProgressView: UIView {
         createCirclePath()
         shapeLayer = CAShapeLayer()
         shapeLayer.path = bgPath.cgPath
-        shapeLayer.lineWidth = 12
+        shapeLayer.lineWidth = 18
         shapeLayer.fillColor = nil
         shapeLayer.strokeColor = UIColor.darkGray.cgColor
         
         progressLayer = CAShapeLayer()
         progressLayer.path = bgPath.cgPath
         progressLayer.lineCap = CAShapeLayerLineCap.round
-        progressLayer.lineWidth = 6
+        progressLayer.lineWidth = 8
         progressLayer.fillColor = nil
         progressLayer.strokeColor = UIColor(red:0.47, green:1.00, blue:0.45, alpha:1.0).cgColor
         progressLayer.strokeEnd = 0.0
@@ -61,7 +61,6 @@ class CircularProgressView: UIView {
         let x = self.frame.width/2
         let y = self.frame.height/2
         let center = CGPoint(x: x, y: y)
-        print(x,y,center)
         bgPath.addArc(withCenter: center, radius: x/CGFloat(1.1), startAngle: CGFloat(-Double.pi/2), endAngle: CGFloat(Double.pi*3/2), clockwise: true)
         bgPath.close()
     }
