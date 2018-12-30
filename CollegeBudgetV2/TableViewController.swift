@@ -87,6 +87,26 @@ class TableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let resetAlert = UIAlertController(title: NSLocalizedString("str_reset", comment: ""), message: NSLocalizedString("str_reset", comment: ""), preferredStyle: UIAlertController.Style.alert)
+            
+            resetAlert.addAction(UIAlertAction(title: NSLocalizedString("str_continue", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
+                self.budgets.remove(at: indexPath.row)
+                let budgetEntity = NSEntityDescription.insertNewObject(forEntityName: "Budget", into: self.context)
+                budgetEntity.re
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
+            }))
+            
+            resetAlert.addAction(UIAlertAction(title: NSLocalizedString("str_cancel", comment: ""), style: .cancel, handler: { (action: UIAlertAction!) in
+                
+            }))
+            saveModel()
+            present(resetAlert, animated: true, completion: nil)
+            
+        }
+    }
+    
     
 
 
