@@ -19,9 +19,6 @@ class BudgetTableViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         tableView.rowHeight = 80.0
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
-        navigationController?.toolbar.barTintColor = UIColor(red:0.15, green:0.15, blue:0.15, alpha:1.0)
         
         addTestData()
         loadModel()
