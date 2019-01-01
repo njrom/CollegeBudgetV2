@@ -79,7 +79,17 @@
                             <outlet property="delegate" destination="PfF-qI-uom" id="VOT-cV-uGJ"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="Add Budget" style="done" id="Uct-xv-jQG">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="93Y-xU-hEb"/>
+                        <barButtonItem title="Add Transaction" style="done" id="Hvd-un-Cge">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Budgets" id="R9u-YA-31o"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="4RH-FJ-Nfo" kind="show" identifier="goToTransactions" id="Ykr-74-MQl"/>
                     </connections>
@@ -118,22 +128,81 @@
             </objects>
             <point key="canvasLocation" x="-311" y="659"/>
         </scene>
-        <!--Transactions-->
+        <!--SelectedBudget-->
         <scene sceneID="LDe-L2-lwY">
             <objects>
-                <tableViewController title="Transactions" id="4RH-FJ-Nfo" customClass="TransactionTableViewController" customModule="CollegeBudgetV2" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="SelectedBudget" id="4RH-FJ-Nfo" customClass="TransactionTableViewController" customModule="CollegeBudgetV2" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="0CY-0b-Mly">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.25098039215686274" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="Jbk-TS-Nl7">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                        <view key="tableHeaderView" opaque="NO" contentMode="scaleToFill" id="Jbk-TS-Nl7">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eHo-Uv-pnQ" customClass="CircularProgressView" customModule="CollegeBudgetV2" customModuleProvider="target">
+                                    <rect key="frame" x="285" y="5" width="80" height="80"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="80" id="Zcz-hE-pdp"/>
+                                        <constraint firstAttribute="height" constant="80" id="kAf-gR-yOe"/>
+                                    </constraints>
+                                </view>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="PkW-8I-AWV">
+                                    <rect key="frame" x="8" y="19.5" width="234.5" height="51"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8Kd-mC-dRa">
+                                            <rect key="frame" x="0.0" y="0.0" width="234.5" height="26.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Balance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lx2-p2-qye">
+                                                    <rect key="frame" x="0.0" y="0.0" width="176.5" height="26.5"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfv-r4-rmK">
+                                                    <rect key="frame" x="186.5" y="0.0" width="48" height="26.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <color key="textColor" red="0.47450980390000003" green="1" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="0Qc-43-1Yl">
+                                            <rect key="frame" x="0.0" y="27.5" width="234.5" height="23.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Amount:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cxS-Bz-suu">
+                                                    <rect key="frame" x="0.0" y="0.0" width="112.5" height="23.5"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IYg-tz-XBW">
+                                                    <rect key="frame" x="119.5" y="0.0" width="115" height="23.5"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                    <color key="textColor" red="0.47450980390000003" green="1" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="0Qc-43-1Yl" firstAttribute="trailing" secondItem="8Kd-mC-dRa" secondAttribute="trailing" id="4Te-Uk-Bgb"/>
+                                    </constraints>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.21568727493286133" green="0.21568319201469421" blue="0.21568861603736877" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="eHo-Uv-pnQ" secondAttribute="trailing" constant="10" id="JNq-SY-pwn"/>
+                                <constraint firstItem="eHo-Uv-pnQ" firstAttribute="centerY" secondItem="Jbk-TS-Nl7" secondAttribute="centerY" id="OEd-4V-a3A"/>
+                                <constraint firstItem="PkW-8I-AWV" firstAttribute="centerY" secondItem="Jbk-TS-Nl7" secondAttribute="centerY" id="feM-n6-Ndd"/>
+                                <constraint firstItem="PkW-8I-AWV" firstAttribute="centerX" secondItem="Jbk-TS-Nl7" secondAttribute="centerX" multiplier="2:3" id="iZq-xG-pR7"/>
+                            </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TransactionCell" rowHeight="80" id="A64-np-4YN" customClass="TransactionTableViewCell" customModule="CollegeBudgetV2" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="148" width="375" height="80"/>
+                                <rect key="frame" x="0.0" y="118" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="A64-np-4YN" id="R44-4K-1Fy">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -167,15 +236,23 @@
                             <outlet property="delegate" destination="4RH-FJ-Nfo" id="1sF-GF-tpQ"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="A8p-YM-kEo"/>
+                        <barButtonItem title="Add Transaction" style="done" id="eZ6-80-NYb">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nnr-2u-nYw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-311" y="-44"/>
+            <point key="canvasLocation" x="-311.19999999999999" y="-44.527736131934034"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sd9-jJ-0E1">
             <objects>
-                <navigationController id="XAV-Bu-3Ms" sceneMemberID="viewController">
+                <navigationController toolbarHidden="NO" id="XAV-Bu-3Ms" sceneMemberID="viewController">
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="m22-9w-qGV">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -186,6 +263,11 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="qc4-Ry-1Ie">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </toolbar>
                     <connections>
                         <segue destination="PfF-qI-uom" kind="relationship" relationship="rootViewController" id="nIS-S1-p7t"/>
                     </connections>

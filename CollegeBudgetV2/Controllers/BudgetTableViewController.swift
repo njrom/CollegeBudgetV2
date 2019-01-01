@@ -117,6 +117,7 @@ class BudgetTableViewController: UITableViewController {
         
         if let indexPath = tableView.indexPathForSelectedRow {
             destinationVC.selectedBudget = budgets[indexPath.row]
+            destinationVC.title = budgets[indexPath.row].name
         }
     }
     
