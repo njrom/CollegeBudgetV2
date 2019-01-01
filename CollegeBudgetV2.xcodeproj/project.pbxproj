@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		AF0736AF21D0734900CA10B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0736AE21D0734900CA10B7 /* AppDelegate.swift */; };
-		AF0736B121D0734900CA10B7 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0736B021D0734900CA10B7 /* TableViewController.swift */; };
+		AF0736B121D0734900CA10B7 /* BudgetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0736B021D0734900CA10B7 /* BudgetTableViewController.swift */; };
 		AF0736B421D0734900CA10B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF0736B221D0734900CA10B7 /* Main.storyboard */; };
 		AF0736B721D0734900CA10B7 /* CollegeBudgetV2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AF0736B521D0734900CA10B7 /* CollegeBudgetV2.xcdatamodeld */; };
 		AF0736B921D0734A00CA10B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF0736B821D0734A00CA10B7 /* Assets.xcassets */; };
 		AF0736BC21D0734A00CA10B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF0736BA21D0734A00CA10B7 /* LaunchScreen.storyboard */; };
+		AF6D2B9D21DC231F0079479A /* TransactionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6D2B9C21DC231F0079479A /* TransactionTableViewController.swift */; };
+		AF6D2BA321DC28E60079479A /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6D2BA221DC28E60079479A /* TransactionTableViewCell.swift */; };
 		AF73D26021D83A4800ED98C7 /* BudgetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF73D25F21D83A4800ED98C7 /* BudgetTableViewCell.swift */; };
 		AF73D26221D83EFF00ED98C7 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF73D26121D83EFF00ED98C7 /* CircularProgressView.swift */; };
 /* End PBXBuildFile section */
@@ -20,12 +22,14 @@
 /* Begin PBXFileReference section */
 		AF0736AB21D0734900CA10B7 /* CollegeBudgetV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollegeBudgetV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF0736AE21D0734900CA10B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AF0736B021D0734900CA10B7 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		AF0736B021D0734900CA10B7 /* BudgetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTableViewController.swift; sourceTree = "<group>"; };
 		AF0736B321D0734900CA10B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AF0736B621D0734900CA10B7 /* CollegeBudgetV2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CollegeBudgetV2.xcdatamodel; sourceTree = "<group>"; };
 		AF0736B821D0734A00CA10B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF0736BB21D0734A00CA10B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF0736BD21D0734A00CA10B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF6D2B9C21DC231F0079479A /* TransactionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewController.swift; sourceTree = "<group>"; };
+		AF6D2BA221DC28E60079479A /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		AF73D25F21D83A4800ED98C7 /* BudgetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTableViewCell.swift; sourceTree = "<group>"; };
 		AF73D26121D83EFF00ED98C7 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -60,17 +64,51 @@
 		AF0736AD21D0734900CA10B7 /* CollegeBudgetV2 */ = {
 			isa = PBXGroup;
 			children = (
-				AF0736AE21D0734900CA10B7 /* AppDelegate.swift */,
-				AF0736B021D0734900CA10B7 /* TableViewController.swift */,
-				AF0736B221D0734900CA10B7 /* Main.storyboard */,
-				AF0736B821D0734A00CA10B7 /* Assets.xcassets */,
-				AF0736BA21D0734A00CA10B7 /* LaunchScreen.storyboard */,
 				AF0736BD21D0734A00CA10B7 /* Info.plist */,
-				AF0736B521D0734900CA10B7 /* CollegeBudgetV2.xcdatamodeld */,
-				AF73D25F21D83A4800ED98C7 /* BudgetTableViewCell.swift */,
-				AF73D26121D83EFF00ED98C7 /* CircularProgressView.swift */,
+				AF6D2B9F21DC23580079479A /* Support Files */,
+				AF6D2B9E21DC23440079479A /* Custom Views */,
+				AF6D2BA021DC28AD0079479A /* Controllers */,
+				AF6D2BA121DC28BF0079479A /* Cells */,
+				AF0736B221D0734900CA10B7 /* Main.storyboard */,
 			);
 			path = CollegeBudgetV2;
+			sourceTree = "<group>";
+		};
+		AF6D2B9E21DC23440079479A /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				AF73D26121D83EFF00ED98C7 /* CircularProgressView.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		AF6D2B9F21DC23580079479A /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				AF0736AE21D0734900CA10B7 /* AppDelegate.swift */,
+				AF0736B821D0734A00CA10B7 /* Assets.xcassets */,
+				AF0736B521D0734900CA10B7 /* CollegeBudgetV2.xcdatamodeld */,
+				AF0736BA21D0734A00CA10B7 /* LaunchScreen.storyboard */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		AF6D2BA021DC28AD0079479A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AF0736B021D0734900CA10B7 /* BudgetTableViewController.swift */,
+				AF6D2B9C21DC231F0079479A /* TransactionTableViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		AF6D2BA121DC28BF0079479A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				AF73D25F21D83A4800ED98C7 /* BudgetTableViewCell.swift */,
+				AF6D2BA221DC28E60079479A /* TransactionTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,8 +182,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF0736B121D0734900CA10B7 /* TableViewController.swift in Sources */,
+				AF0736B121D0734900CA10B7 /* BudgetTableViewController.swift in Sources */,
+				AF6D2BA321DC28E60079479A /* TransactionTableViewCell.swift in Sources */,
 				AF0736AF21D0734900CA10B7 /* AppDelegate.swift in Sources */,
+				AF6D2B9D21DC231F0079479A /* TransactionTableViewController.swift in Sources */,
 				AF73D26021D83A4800ED98C7 /* BudgetTableViewCell.swift in Sources */,
 				AF73D26221D83EFF00ED98C7 /* CircularProgressView.swift in Sources */,
 				AF0736B721D0734900CA10B7 /* CollegeBudgetV2.xcdatamodeld in Sources */,

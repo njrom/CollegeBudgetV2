@@ -13,7 +13,7 @@
         <!--Budgets-->
         <scene sceneID="lGz-aF-3WU">
             <objects>
-                <tableViewController id="PfF-qI-uom" customClass="TableViewController" customModule="CollegeBudgetV2" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="PfF-qI-uom" customClass="BudgetTableViewController" customModule="CollegeBudgetV2" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cKj-qD-VkI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -81,7 +81,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Budgets" id="R9u-YA-31o"/>
                     <connections>
-                        <segue destination="4RH-FJ-Nfo" kind="show" id="Ykr-74-MQl"/>
+                        <segue destination="4RH-FJ-Nfo" kind="show" identifier="goToTransactions" id="Ykr-74-MQl"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AfD-w6-Wfb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -121,7 +121,7 @@
         <!--Transactions-->
         <scene sceneID="LDe-L2-lwY">
             <objects>
-                <tableViewController title="Transactions" id="4RH-FJ-Nfo" sceneMemberID="viewController">
+                <tableViewController title="Transactions" id="4RH-FJ-Nfo" customClass="TransactionTableViewController" customModule="CollegeBudgetV2" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="0CY-0b-Mly">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -132,14 +132,34 @@
                             <color key="backgroundColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="A64-np-4YN">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TransactionCell" rowHeight="80" id="A64-np-4YN" customClass="TransactionTableViewCell" customModule="CollegeBudgetV2" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="148" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="A64-np-4YN" id="R44-4K-1Fy">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gze-IH-hR3">
+                                            <rect key="frame" x="48" y="30" width="42" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAl-gs-YYr">
+                                            <rect key="frame" x="214" y="29" width="42" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="amountLabel" destination="bAl-gs-YYr" id="fBt-9J-d5W"/>
+                                    <outlet property="nameLabel" destination="gze-IH-hR3" id="kTF-yV-TgC"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -150,7 +170,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nnr-2u-nYw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-311.19999999999999" y="-53.523238380809602"/>
+            <point key="canvasLocation" x="-311" y="-44"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sd9-jJ-0E1">

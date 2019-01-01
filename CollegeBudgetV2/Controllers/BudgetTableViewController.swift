@@ -9,16 +9,21 @@
 import UIKit
 import CoreData
 
-class TableViewController: UITableViewController {
+class BudgetTableViewController: UITableViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var navigationBarAppearace = UINavigationBar.appearance()
     var budgets = [Budget]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         tableView.rowHeight = 80.0
-        //addTestData()
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        navigationController?.toolbar.barTintColor = UIColor(red:0.15, green:0.15, blue:0.15, alpha:1.0)
+        
+        addTestData()
         loadModel()
         
     }
@@ -29,7 +34,7 @@ class TableViewController: UITableViewController {
         budgetEntity.setValue("shopping-cart", forKey: "imageName")
         budgetEntity.setValue(120.00, forKey: "initialBalence")
         budgetEntity.setValue(120.00, forKey: "currentBalence")
-        budgetEntity.setValue(true, forKey: "isSavings")
+        budgetEntity.setValue(false, forKey: "isSavings")
         saveModel()
     }
     
@@ -93,8 +98,7 @@ class TableViewController: UITableViewController {
             
             resetAlert.addAction(UIAlertAction(title: NSLocalizedString("str_continue", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
                 self.budgets.remove(at: indexPath.row)
-                let budgetEntity = NSEntityDescription.insertNewObject(forEntityName: "Budget", into: self.context)
-                budgetEntity.re
+                // TODO: Figure out how to delete from coreData
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
             }))
             
@@ -104,6 +108,18 @@ class TableViewController: UITableViewController {
             saveModel()
             present(resetAlert, animated: true, completion: nil)
             
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         performSegue(withIdentifier: "goToTransactions", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! TransactionTableViewController
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            destinationVC.selectedBudget = budgets[indexPath.row]
         }
     }
     
