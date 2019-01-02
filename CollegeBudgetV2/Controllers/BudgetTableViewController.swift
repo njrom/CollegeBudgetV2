@@ -19,6 +19,14 @@ class BudgetTableViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         tableView.rowHeight = 80.0
+        self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+        self.navigationController?.toolbar.setValue(true, forKey: "hidesShadow")
+        let formatter = DateFormatter()
+        let date = Date()
+        formatter.dateStyle = DateFormatter.Style.long
+        
+        let dateString = formatter.string(from: date)
+        self.title = dateString
         
         addTestData()
         loadModel()

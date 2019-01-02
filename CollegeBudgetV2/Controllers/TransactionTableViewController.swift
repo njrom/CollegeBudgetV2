@@ -11,6 +11,10 @@ import CoreData
 
 class TransactionTableViewController: UITableViewController {
 
+    @IBOutlet weak var balenceLabel: UILabel!
+    @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var budgetProgressView: CircularProgressView!
+    
     var transactionsArray = [Transaction]()
     
     var selectedBudget : Budget? {
@@ -23,7 +27,19 @@ class TransactionTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
+        
+        var color = UIColor(red:0.47, green:1.00, blue:0.45, alpha:1.0)
+        if selectedBudget!.isSavings {
+            color = UIColor(red:0.00, green:0.86, blue:1.00, alpha:1.0)
+        }
+        balenceLabel.text = String(format: "$%.02f", selectedBudget!.currentBalence)
+        amountLabel.text =  String(format: "$%.02f", selectedBudget!.initialBalence)
+        let progressRatio = Float(CGFloat((selectedBudget!.currentBalence/selectedBudget!.initialBalence)))
+        budgetProgressView.progressLayer.strokeColor = color.cgColor
+        budgetProgressView.progress = Float(CGFloat((selectedBudget!.currentBalence/selectedBudget!.initialBalence)))
+        budgetProgressView.animateView(from: 0.0, to: progressRatio , in: 1.0)
     }
     
     
