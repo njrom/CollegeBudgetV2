@@ -9,11 +9,12 @@
 import UIKit
 import CoreData
 
-class TransactionTableViewController: UITableViewController {
+class TransactionTableViewController: UITableViewController, TransactionCellDelegate {
 
     @IBOutlet weak var balenceLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var budgetProgressView: CircularProgressView!
+    
     
     var transactionsArray = [Transaction]()
     
@@ -27,6 +28,7 @@ class TransactionTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.allowsSelection = false
         
         
         
@@ -38,6 +40,8 @@ class TransactionTableViewController: UITableViewController {
         amountLabel.text =  String(format: "$%.02f", selectedBudget!.initialBalence)
         let progressRatio = Float(CGFloat((selectedBudget!.currentBalence/selectedBudget!.initialBalence)))
         budgetProgressView.progressLayer.strokeColor = color.cgColor
+        balenceLabel.textColor = color
+        amountLabel.textColor = color
         budgetProgressView.progress = Float(CGFloat((selectedBudget!.currentBalence/selectedBudget!.initialBalence)))
         budgetProgressView.animateView(from: 0.0, to: progressRatio , in: 1.0)
     }
@@ -66,8 +70,8 @@ class TransactionTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return transactionsArray.count
     }
     
@@ -76,9 +80,76 @@ class TransactionTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let transaction = transactionsArray[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionCell") as! TransactionTableViewCell
-        cell.nameLabel.text = transaction.name!
-        cell.amountLabel.text = String(format: "Remaining: $%.02f", transaction.amount)
+        cell.delegate = self
+        var color = UIColor(red:0.47, green:1.00, blue:0.45, alpha:1.0)
+        if transaction.isIncome {
+            color = UIColor(red:0.00, green:0.86, blue:1.00, alpha:1.0)
+        }
+        cell.amountTextField.textColor = color
+        cell.nameTextField.text = transaction.name
+        cell.nameTextField.tag = indexPath.row
+        cell.amountTextField.tag = indexPath.row
+        print(transaction.amount)
+        cell.amountTextField.text = String(format: "$%.02f", transaction.amount)
+        if transaction.name == nil {
+            cell.nameTextField.becomeFirstResponder()
+        }
+        
+        if indexPath.row % 2 == 0 {
+            cell.backgroundColor = UIColor(red:0.25, green:0.25, blue:0.25, alpha:1.0)
+        } else {
+            cell.backgroundColor = UIColor(red:0.28, green:0.28, blue:0.28, alpha:1.0)
+        }
         return cell
     }
 
+    @IBAction func addTransactionHit(_ sender: UIBarButtonItem) {
+        let newTransaction = Transaction(context: context)
+        
+        newTransaction.isIncome = false
+        newTransaction.parentBudget = selectedBudget
+        newTransaction.date = Date()
+        transactionsArray.append(newTransaction)
+        tableView.reloadData()
+    }
+    
+    // Delegate Method that pulls data from the textFields
+    func newTransactions(from textField: UITextField , name: String?, amountString: String?) {
+        let index = textField.tag
+        let amount = Double(amountString!.replacingOccurrences(of: "$", with: ""))!
+        transactionsArray[index].name = name
+        
+        if transactionsArray[index].isIncome {
+            selectedBudget!.currentBalence = (selectedBudget!.currentBalence - transactionsArray[index].amount + amount)
+            let newRatio = Float(CGFloat(selectedBudget!.currentBalence/selectedBudget!.initialBalence))
+            budgetProgressView.animateView(from: budgetProgressView.progress, to: newRatio, in: Double(10*newRatio))
+            budgetProgressView.progress = newRatio
+            balenceLabel.text = String(format: "$%.02f", selectedBudget!.currentBalence)
+            transactionsArray[index].amount = amount
+        } else {
+            selectedBudget!.currentBalence = (selectedBudget!.currentBalence + transactionsArray[index].amount - amount)
+            let newRatio = Float(CGFloat(selectedBudget!.currentBalence/selectedBudget!.initialBalence))
+            budgetProgressView.animateView(from: budgetProgressView.progress, to: newRatio, in: Double(10*newRatio))
+            budgetProgressView.progress = newRatio
+            balenceLabel.text = String(format: "$%.02f", selectedBudget!.currentBalence)
+            transactionsArray[index].amount = amount
+        }
+        saveModel()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! BudgetTableViewController
+        destinationVC.loadModel()
+    }
+    
+    func saveModel() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving category \(error)")
+        }
+        
+        tableView.reloadData()
+        
+    }
 }

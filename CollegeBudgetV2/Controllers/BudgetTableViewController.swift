@@ -28,18 +28,26 @@ class BudgetTableViewController: UITableViewController {
         let dateString = formatter.string(from: date)
         self.title = dateString
         
-        addTestData()
+        // addTestData()
         loadModel()
+        
         
     }
     
     func addTestData() {
         let budgetEntity = NSEntityDescription.insertNewObject(forEntityName: "Budget", into: context)
-        budgetEntity.setValue("Wegmans", forKey: "name")
+        budgetEntity.setValue("Groceries", forKey: "name")
         budgetEntity.setValue("shopping-cart", forKey: "imageName")
-        budgetEntity.setValue(120.00, forKey: "initialBalence")
-        budgetEntity.setValue(120.00, forKey: "currentBalence")
+        budgetEntity.setValue(160.00, forKey: "initialBalence")
+        budgetEntity.setValue(160.00, forKey: "currentBalence")
         budgetEntity.setValue(false, forKey: "isSavings")
+        
+        let budgetEntity2 = NSEntityDescription.insertNewObject(forEntityName: "Budget", into: context)
+        budgetEntity2.setValue("Gas", forKey: "name")
+        budgetEntity2.setValue("car", forKey: "imageName")
+        budgetEntity2.setValue(60.00, forKey: "initialBalence")
+        budgetEntity2.setValue(60.00, forKey: "currentBalence")
+        budgetEntity2.setValue(false, forKey: "isSavings")
         saveModel()
     }
     
