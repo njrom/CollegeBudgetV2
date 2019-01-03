@@ -28,7 +28,7 @@ class BudgetTableViewController: UITableViewController {
         let dateString = formatter.string(from: date)
         self.title = dateString
         
-        // addTestData()
+        addTestData()
         loadModel()
         
         
@@ -74,15 +74,28 @@ class BudgetTableViewController: UITableViewController {
         tableView.reloadData()
         
     }
-    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return budgets.count
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return budgets.count
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 15
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = UIColor.clear
+        return view
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BudgetCell") as! BudgetTableViewCell
-        let budget = budgets[indexPath.row]
+        let budget = budgets[indexPath.section]
         
         var color = UIColor(red:0.47, green:1.00, blue:0.45, alpha:1.0)
         if budget.isSavings {
@@ -97,11 +110,16 @@ class BudgetTableViewController: UITableViewController {
         cell.iconImageView?.image = UIImage(named: budget.imageName!)
         cell.progressView.progress = Float(CGFloat((budget.currentBalence/budget.initialBalence)))
         
-        if indexPath.row % 2 == 0 {
-            cell.backgroundColor = UIColor(red:0.25, green:0.25, blue:0.25, alpha:1.0)
+        if indexPath.section % 2 == 0 {
+            cell.contentView.backgroundColor = UIColor(red:0.25, green:0.25, blue:0.25, alpha:1.0)
         } else {
-            cell.backgroundColor = UIColor(red:0.28, green:0.28, blue:0.28, alpha:1.0)
+            cell.contentView.backgroundColor = UIColor(red:0.28, green:0.28, blue:0.28, alpha:1.0)
+            //cell.contentView.backgroundColor = UIColor(red:0.25, green:0.25, blue:0.25, alpha:1.0)
         }
+        cell.contentView.backgroundColor = UIColor(red:0.28, green:0.28, blue:0.28, alpha:1.0)
+        cell.backgroundColor = UIColor.clear
+        cell.contentView.layer.cornerRadius = 20
+        cell.contentView.layer.masksToBounds = true
         return cell
     }
     

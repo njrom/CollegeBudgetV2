@@ -41,7 +41,7 @@ class CircularProgressView: UIView {
         shapeLayer.path = bgPath.cgPath
         shapeLayer.lineWidth = 18
         shapeLayer.fillColor = nil
-        shapeLayer.strokeColor = UIColor.darkGray.cgColor
+        shapeLayer.strokeColor = UIColor(named: "FrameColor")?.cgColor
         
         progressLayer = CAShapeLayer()
         progressLayer.path = bgPath.cgPath
