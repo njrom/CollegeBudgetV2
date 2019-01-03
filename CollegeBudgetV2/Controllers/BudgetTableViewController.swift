@@ -27,8 +27,7 @@ class BudgetTableViewController: UITableViewController {
         
         let dateString = formatter.string(from: date)
         self.title = dateString
-        
-        addTestData()
+        // addTestData()
         loadModel()
         
         
@@ -48,6 +47,13 @@ class BudgetTableViewController: UITableViewController {
         budgetEntity2.setValue(60.00, forKey: "initialBalence")
         budgetEntity2.setValue(60.00, forKey: "currentBalence")
         budgetEntity2.setValue(false, forKey: "isSavings")
+        
+        let budgetEntity3 = NSEntityDescription.insertNewObject(forEntityName: "Budget", into: context)
+        budgetEntity3.setValue("Monitor", forKey: "name")
+        budgetEntity3.setValue("monitor", forKey: "imageName")
+        budgetEntity3.setValue(440.00, forKey: "initialBalence")
+        budgetEntity3.setValue(0.00, forKey: "currentBalence")
+        budgetEntity3.setValue(true, forKey: "isSavings")
         saveModel()
     }
     
@@ -97,26 +103,23 @@ class BudgetTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BudgetCell") as! BudgetTableViewCell
         let budget = budgets[indexPath.section]
         
-        var color = UIColor(red:0.47, green:1.00, blue:0.45, alpha:1.0)
+        var color = UIColor(named: "ExpenseGreenColor")!
         if budget.isSavings {
             color = UIColor(red:0.00, green:0.86, blue:1.00, alpha:1.0)
         }
         
         cell.nameLabel.text = budget.name!
-        cell.remainingLabel.text = String(format: "Remaining: $%.02f", budget.currentBalence)
-        
+        if budget.isSavings {
+            cell.remainingLabel.text = String(format: "Saved: $%.02f", budget.currentBalence)
+        } else {
+            cell.remainingLabel.text = String(format: "Remaining: $%.02f", budget.currentBalence)
+        }
         cell.remainingLabel.textColor = color
         cell.progressView.progressLayer.strokeColor = color.cgColor
         cell.iconImageView?.image = UIImage(named: budget.imageName!)
         cell.progressView.progress = Float(CGFloat((budget.currentBalence/budget.initialBalence)))
         
-        if indexPath.section % 2 == 0 {
-            cell.contentView.backgroundColor = UIColor(red:0.25, green:0.25, blue:0.25, alpha:1.0)
-        } else {
-            cell.contentView.backgroundColor = UIColor(red:0.28, green:0.28, blue:0.28, alpha:1.0)
-            //cell.contentView.backgroundColor = UIColor(red:0.25, green:0.25, blue:0.25, alpha:1.0)
-        }
-        cell.contentView.backgroundColor = UIColor(red:0.28, green:0.28, blue:0.28, alpha:1.0)
+        cell.contentView.backgroundColor = UIColor(named: "DetailColor")
         cell.backgroundColor = UIColor.clear
         cell.contentView.layer.cornerRadius = 20
         cell.contentView.layer.masksToBounds = true
@@ -150,8 +153,8 @@ class BudgetTableViewController: UITableViewController {
         let destinationVC = segue.destination as! TransactionTableViewController
         
         if let indexPath = tableView.indexPathForSelectedRow {
-            destinationVC.selectedBudget = budgets[indexPath.row]
-            destinationVC.title = budgets[indexPath.row].name
+            destinationVC.selectedBudget = budgets[indexPath.section]
+            destinationVC.title = budgets[indexPath.section].name
         }
     }
     

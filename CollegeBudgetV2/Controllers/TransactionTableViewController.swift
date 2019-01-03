@@ -122,6 +122,7 @@ class TransactionTableViewController: UITableViewController, TransactionCellDele
         if transactionsArray[index].isIncome {
             selectedBudget!.currentBalence = (selectedBudget!.currentBalence - transactionsArray[index].amount + amount)
             let newRatio = Float(CGFloat(selectedBudget!.currentBalence/selectedBudget!.initialBalence))
+            print(Double(100*newRatio))
             budgetProgressView.animateView(from: budgetProgressView.progress, to: newRatio, in: Double(10*newRatio))
             budgetProgressView.progress = newRatio
             balenceLabel.text = String(format: "$%.02f", selectedBudget!.currentBalence)
@@ -129,8 +130,8 @@ class TransactionTableViewController: UITableViewController, TransactionCellDele
         } else {
             selectedBudget!.currentBalence = (selectedBudget!.currentBalence + transactionsArray[index].amount - amount)
             let newRatio = Float(CGFloat(selectedBudget!.currentBalence/selectedBudget!.initialBalence))
-            budgetProgressView.animateView(from: budgetProgressView.progress, to: newRatio, in: Double(10*newRatio))
-            budgetProgressView.progress = newRatio
+            budgetProgressView.animateView(from: budgetProgressView.progress, to: newRatio, in: Double(8*newRatio + 1))
+            // budgetProgressView.progress = newRatio
             balenceLabel.text = String(format: "$%.02f", selectedBudget!.currentBalence)
             transactionsArray[index].amount = amount
         }

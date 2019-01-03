@@ -9,11 +9,12 @@
 
 import UIKit
 
-class CircularProgressView: UIView {
+class CircularProgressView: UIView, CAAnimationDelegate {
     
     var bgPath: UIBezierPath!
     var shapeLayer: CAShapeLayer!
     var progressLayer: CAShapeLayer!
+    var end : Float = 0.0
     
     var progress: Float = 0 {
         willSet(newValue)
@@ -68,15 +69,20 @@ class CircularProgressView: UIView {
     func animateView(from start: Float, to end: Float, in duration: Double) {
         progressLayer.strokeEnd = CGFloat(start)
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        
         basicAnimation.toValue = end
         
         basicAnimation.duration = duration
         
         basicAnimation.fillMode = CAMediaTimingFillMode.forwards
         basicAnimation.isRemovedOnCompletion = false
-        
+        basicAnimation.delegate = self
         progressLayer.add(basicAnimation, forKey: "urSoBasic")
+        self.end = end
+        
+    }
+    
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        self.progress = self.end
     }
     
 }
