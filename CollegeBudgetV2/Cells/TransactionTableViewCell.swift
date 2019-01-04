@@ -19,7 +19,8 @@ class TransactionTableViewCell: UITableViewCell, UITextFieldDelegate{
 
     @IBOutlet weak var incomeToggleSwitch: UISwitch!
     
-
+    @IBOutlet weak var toggleTransactionOutlet: UIButton!
+    var isSavings = false
     weak var delegate: TransactionCellDelegate?
     
     let defaultHeight = 60
@@ -39,6 +40,7 @@ class TransactionTableViewCell: UITableViewCell, UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         delegate?.newTransactions(from: textField, name: nameTextField.text, amountString: amountTextField.text)
+        print("Fire")
         return true
     }
     
@@ -54,7 +56,19 @@ class TransactionTableViewCell: UITableViewCell, UITextFieldDelegate{
         })
     }
 
-    @IBAction func incomeToggleSwitchHit(_ sender: UISwitch) {
-        delegate?.transactionToggle(toggle: sender.isOn, tag: self.tag)
+
+    
+    @IBAction func toggleTransactionType(_ sender: UIButton) {
+        if !isSavings {
+            sender.setTitle("Savings", for: .normal)
+            sender.setTitleColor(UIColor(named: "IncomeBlueColor"), for: .normal)
+            isSavings = !isSavings
+        } else {
+            sender.setTitle("Expense", for: .normal)
+            sender.setTitleColor(UIColor(named: "ExpenseGreenColor"), for: .normal)
+            
+            isSavings = !isSavings
+        }
+        delegate?.transactionToggle(toggle: isSavings, tag: self.tag)
     }
 }

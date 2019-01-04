@@ -161,6 +161,7 @@ class BudgetTableViewController: UITableViewController {
             destinationVC.selectedBudget = budgets[indexPath.section]
             destinationVC.title = budgets[indexPath.section].name
         }
+        destinationVC.tableView.reloadData()
     }
     
     
