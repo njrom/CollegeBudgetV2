@@ -27,7 +27,8 @@ class BudgetTableViewController: UITableViewController {
         
         let dateString = formatter.string(from: date)
         self.title = dateString
-        // addTestData()
+        self.navigationItem.title = dateString
+        addTestData()
         loadModel()
         
         
@@ -124,6 +125,10 @@ class BudgetTableViewController: UITableViewController {
         cell.contentView.layer.cornerRadius = 20
         cell.contentView.layer.masksToBounds = true
         return cell
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

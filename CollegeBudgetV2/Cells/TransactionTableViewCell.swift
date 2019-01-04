@@ -9,15 +9,20 @@
 import UIKit
 protocol TransactionCellDelegate: class  {
     func newTransactions(from: UITextField, name: String?, amountString: String?)
+    func transactionToggle(toggle: Bool, tag: Int)
 }
 class TransactionTableViewCell: UITableViewCell, UITextFieldDelegate{
 
 
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var amountTextField: UITextField!
-   
+
+    @IBOutlet weak var incomeToggleSwitch: UISwitch!
+    
+
     weak var delegate: TransactionCellDelegate?
     
+    let defaultHeight = 60
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -36,5 +41,20 @@ class TransactionTableViewCell: UITableViewCell, UITextFieldDelegate{
         delegate?.newTransactions(from: textField, name: nameTextField.text, amountString: amountTextField.text)
         return true
     }
+    
+    
+    func collapse() {
+        UIView.animate(withDuration:0.3, delay: 0.0, options: .curveLinear, animations: {
+            
+     
+            self.layoutIfNeeded()
+            
+        }, completion: { finished in
+            
+        })
+    }
 
+    @IBAction func incomeToggleSwitchHit(_ sender: UISwitch) {
+        delegate?.transactionToggle(toggle: sender.isOn, tag: self.tag)
+    }
 }
