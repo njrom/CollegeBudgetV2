@@ -17,8 +17,7 @@ class TransactionTableViewCell: UITableViewCell, UITextFieldDelegate{
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var amountTextField: UITextField!
 
-    @IBOutlet weak var incomeToggleSwitch: UISwitch!
-    
+        
     @IBOutlet weak var toggleTransactionOutlet: UIButton!
     var isSavings = false
     weak var delegate: TransactionCellDelegate?

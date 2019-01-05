@@ -12,7 +12,7 @@ import CoreData
 class TransactionTableViewController: UITableViewController, TransactionCellDelegate {
     
     
-
+    
     @IBOutlet weak var balenceLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var budgetProgressView: CircularProgressView!
@@ -67,9 +67,9 @@ class TransactionTableViewController: UITableViewController, TransactionCellDele
         tableView.reloadData()
         
     }
-
+    
     // MARK: - Table view data source
-
+    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -90,8 +90,8 @@ class TransactionTableViewController: UITableViewController, TransactionCellDele
         return view
     }
     
-
-
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let transaction = transactionsArray[indexPath.section]
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionCell") as! TransactionTableViewCell
@@ -121,11 +121,11 @@ class TransactionTableViewController: UITableViewController, TransactionCellDele
         cell.contentView.layer.masksToBounds = true
         return cell
     }
-
+    
     @IBAction func addTransactionHit(_ sender: UIBarButtonItem) {
         let newTransaction = Transaction(context: context)
         
-        newTransaction.isIncome = false
+        newTransaction.isIncome = selectedBudget!.isSavings
         newTransaction.parentBudget = selectedBudget
         newTransaction.date = Date()
         transactionsArray.append(newTransaction)
@@ -149,7 +149,7 @@ class TransactionTableViewController: UITableViewController, TransactionCellDele
         } else {
             selectedBudget!.currentBalence = (selectedBudget!.currentBalence + transactionsArray[index].amount - amount)
             let newRatio = Float(CGFloat(selectedBudget!.currentBalence/selectedBudget!.initialBalence))
-            budgetProgressView.animateView(from: budgetProgressView.progress, to: newRatio, in: Double(newRatio + 1))
+            budgetProgressView.animateView(from: budgetProgressView.progress, to: newRatio, in: Double(newRatio + 0.2))
             // budgetProgressView.progress = newRatio
             balenceLabel.text = String(format: "$%.02f", selectedBudget!.currentBalence)
             transactionsArray[index].amount = amount
@@ -167,7 +167,7 @@ class TransactionTableViewController: UITableViewController, TransactionCellDele
             selectedBudget?.currentBalence = (selectedBudget!.currentBalence) - 2*transactionsArray[tag].amount
         }
         let newRatio = Float(CGFloat(selectedBudget!.currentBalence/selectedBudget!.initialBalence))
-        budgetProgressView.animateView(from: budgetProgressView.progress, to: newRatio, in: Double(newRatio + 1))
+        budgetProgressView.animateView(from: budgetProgressView.progress, to: newRatio, in: Double(newRatio + 0.2))
         // budgetProgressView.progress = newRatio
         balenceLabel.text = String(format: "$%.02f", selectedBudget!.currentBalence)
         
@@ -193,6 +193,35 @@ class TransactionTableViewController: UITableViewController, TransactionCellDele
         
         tableView.reloadData()
         
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            context.delete(self.transactionsArray[indexPath.section])
+            
+            // Must update the Balance as if it were gone
+            let transaction = transactionsArray[indexPath.section]
+            if transaction.isIncome {
+                selectedBudget!.currentBalence = selectedBudget!.currentBalence - transaction.amount
+            } else {
+                selectedBudget!.currentBalence = selectedBudget!.currentBalence + transaction.amount
+            }
+            let newRatio = Float(CGFloat(selectedBudget!.currentBalence/selectedBudget!.initialBalence))
+            budgetProgressView.animateView(from: budgetProgressView.progress, to: newRatio, in: Double(newRatio + 0.2))
+            // budgetProgressView.progress = newRatio
+            balenceLabel.text = String(format: "$%.02f", selectedBudget!.currentBalence)
+            
+            
+            do {
+                try context.save()
+                self.transactionsArray.removeAll()
+                self.loadItems()
+            } catch {
+                
+            }
+            
+        }
     }
     
 }

@@ -28,7 +28,7 @@ class BudgetTableViewController: UITableViewController {
         let dateString = formatter.string(from: date)
         self.title = dateString
         self.navigationItem.title = dateString
-        addTestData()
+        // addTestData()
         loadModel()
         
         
