@@ -31,16 +31,33 @@ class BudgetTableViewController: UITableViewController {
         // addTestData()
         loadModel()
         
+        tableView.setEditing(false, animated: true)
+        
         
     }
     
     func addTestData() {
-        let budgetEntity = NSEntityDescription.insertNewObject(forEntityName: "Budget", into: context)
-        budgetEntity.setValue("Groceries", forKey: "name")
-        budgetEntity.setValue("shopping-cart", forKey: "imageName")
-        budgetEntity.setValue(160.00, forKey: "initialBalence")
-        budgetEntity.setValue(160.00, forKey: "currentBalence")
-        budgetEntity.setValue(false, forKey: "isSavings")
+        
+        let budgetEntity4 = NSEntityDescription.insertNewObject(forEntityName: "Budget", into: context)
+        budgetEntity4.setValue("Semester", forKey: "name")
+        budgetEntity4.setValue("money", forKey: "imageName")
+        budgetEntity4.setValue(1040.00, forKey: "initialBalence")
+        budgetEntity4.setValue(780.33, forKey: "currentBalence")
+        budgetEntity4.setValue(true, forKey: "isSavings")
+        
+        let budgetEntity5 = NSEntityDescription.insertNewObject(forEntityName: "Budget", into: context)
+        budgetEntity5.setValue("Monitor", forKey: "name")
+        budgetEntity5.setValue("monitor", forKey: "imageName")
+        budgetEntity5.setValue(500.00, forKey: "initialBalence")
+        budgetEntity5.setValue(257.97, forKey: "currentBalence")
+        budgetEntity5.setValue(true, forKey: "isSavings")
+        
+        let budgetEntity7 = NSEntityDescription.insertNewObject(forEntityName: "Budget", into: context)
+        budgetEntity7.setValue("Emergency", forKey: "name")
+        budgetEntity7.setValue("bank", forKey: "imageName")
+        budgetEntity7.setValue(250, forKey: "initialBalence")
+        budgetEntity7.setValue(250, forKey: "currentBalence")
+        budgetEntity7.setValue(true, forKey: "isSavings")
         
         let budgetEntity2 = NSEntityDescription.insertNewObject(forEntityName: "Budget", into: context)
         budgetEntity2.setValue("Gas", forKey: "name")
@@ -49,12 +66,20 @@ class BudgetTableViewController: UITableViewController {
         budgetEntity2.setValue(60.00, forKey: "currentBalence")
         budgetEntity2.setValue(false, forKey: "isSavings")
         
-        let budgetEntity3 = NSEntityDescription.insertNewObject(forEntityName: "Budget", into: context)
-        budgetEntity3.setValue("Monitor", forKey: "name")
-        budgetEntity3.setValue("monitor", forKey: "imageName")
-        budgetEntity3.setValue(440.00, forKey: "initialBalence")
-        budgetEntity3.setValue(0.00, forKey: "currentBalence")
-        budgetEntity3.setValue(true, forKey: "isSavings")
+        
+        let budgetEntity = NSEntityDescription.insertNewObject(forEntityName: "Budget", into: context)
+        budgetEntity.setValue("Groceries", forKey: "name")
+        budgetEntity.setValue("shopping-cart", forKey: "imageName")
+        budgetEntity.setValue(300.00, forKey: "initialBalence")
+        budgetEntity.setValue(260.00, forKey: "currentBalence")
+        budgetEntity.setValue(false, forKey: "isSavings")
+        
+        let budgetEntity6 = NSEntityDescription.insertNewObject(forEntityName: "Budget", into: context)
+        budgetEntity6.setValue("Entertainment", forKey: "name")
+        budgetEntity6.setValue("cinema", forKey: "imageName")
+        budgetEntity6.setValue(200, forKey: "initialBalence")
+        budgetEntity6.setValue(180 , forKey: "currentBalence")
+        budgetEntity6.setValue(false, forKey: "isSavings")
         saveModel()
     }
     

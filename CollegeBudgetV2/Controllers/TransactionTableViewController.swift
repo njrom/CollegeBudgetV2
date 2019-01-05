@@ -115,6 +115,7 @@ class TransactionTableViewController: UITableViewController, TransactionCellDele
         cell.amountTextField.text = String(format: "$%.02f", transaction.amount)
         if transaction.name == nil {
             cell.nameTextField.becomeFirstResponder()
+            print("FirstResponder")
         }
         cell.backgroundColor  = UIColor.clear
         cell.contentView.layer.cornerRadius = 10
