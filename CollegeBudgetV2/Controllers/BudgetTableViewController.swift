@@ -11,14 +11,22 @@ import CoreData
 
 class BudgetTableViewController: UITableViewController {
     
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var navigationBarAppearace = UINavigationBar.appearance()
     var budgets = [Budget]()
+    let sortDescriptor = NSSortDescriptor(key: "orderPosition", ascending: true)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
         tableView.rowHeight = 80.0
+        tableView.dragDelegate = self
+        tableView.dropDelegate = self
+
+        
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         self.navigationController?.toolbar.setValue(true, forKey: "hidesShadow")
         let formatter = DateFormatter()
@@ -31,9 +39,13 @@ class BudgetTableViewController: UITableViewController {
         // addTestData()
         loadModel()
         
-        tableView.setEditing(false, animated: true)
+        tableView.setEditing(true, animated: true)
         
         
+    }
+    
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        return model.dragItems(for: indexPath)
     }
     
     func addTestData() {
@@ -44,6 +56,7 @@ class BudgetTableViewController: UITableViewController {
         budgetEntity4.setValue(1040.00, forKey: "initialBalence")
         budgetEntity4.setValue(780.33, forKey: "currentBalence")
         budgetEntity4.setValue(true, forKey: "isSavings")
+        budgetEntity4.setValue(0, forKey: "orderPosition")
         
         let budgetEntity5 = NSEntityDescription.insertNewObject(forEntityName: "Budget", into: context)
         budgetEntity5.setValue("Monitor", forKey: "name")
@@ -51,6 +64,7 @@ class BudgetTableViewController: UITableViewController {
         budgetEntity5.setValue(500.00, forKey: "initialBalence")
         budgetEntity5.setValue(257.97, forKey: "currentBalence")
         budgetEntity5.setValue(true, forKey: "isSavings")
+        budgetEntity5.setValue(1, forKey: "orderPosition")
         
         let budgetEntity7 = NSEntityDescription.insertNewObject(forEntityName: "Budget", into: context)
         budgetEntity7.setValue("Emergency", forKey: "name")
@@ -58,6 +72,7 @@ class BudgetTableViewController: UITableViewController {
         budgetEntity7.setValue(250, forKey: "initialBalence")
         budgetEntity7.setValue(250, forKey: "currentBalence")
         budgetEntity7.setValue(true, forKey: "isSavings")
+        budgetEntity7.setValue(2, forKey: "orderPosition")
         
         let budgetEntity2 = NSEntityDescription.insertNewObject(forEntityName: "Budget", into: context)
         budgetEntity2.setValue("Gas", forKey: "name")
@@ -65,6 +80,7 @@ class BudgetTableViewController: UITableViewController {
         budgetEntity2.setValue(60.00, forKey: "initialBalence")
         budgetEntity2.setValue(60.00, forKey: "currentBalence")
         budgetEntity2.setValue(false, forKey: "isSavings")
+        budgetEntity2.setValue(3, forKey: "orderPosition")
         
         
         let budgetEntity = NSEntityDescription.insertNewObject(forEntityName: "Budget", into: context)
@@ -73,6 +89,7 @@ class BudgetTableViewController: UITableViewController {
         budgetEntity.setValue(300.00, forKey: "initialBalence")
         budgetEntity.setValue(260.00, forKey: "currentBalence")
         budgetEntity.setValue(false, forKey: "isSavings")
+        budgetEntity.setValue(4, forKey: "orderPosition")
         
         let budgetEntity6 = NSEntityDescription.insertNewObject(forEntityName: "Budget", into: context)
         budgetEntity6.setValue("Entertainment", forKey: "name")
@@ -80,12 +97,13 @@ class BudgetTableViewController: UITableViewController {
         budgetEntity6.setValue(200, forKey: "initialBalence")
         budgetEntity6.setValue(180 , forKey: "currentBalence")
         budgetEntity6.setValue(false, forKey: "isSavings")
+        budgetEntity6.setValue(5, forKey: "orderPosition")
         saveModel()
     }
     
     func loadModel() {
         let request : NSFetchRequest<Budget> = Budget.fetchRequest()
-        
+        request.sortDescriptors = [sortDescriptor]
         do {
             budgets = try context.fetch(request)
         } catch {
@@ -175,22 +193,54 @@ class BudgetTableViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+        // NOT NEEDED, SINCE I ASSUME THAT YOU ALREADY FETCHED ON INITIAL LOAD
+        // attemptFetch()
+        
+        // NOT NEEDED
+        //self.controller.delegate = nil
+        
+        let object = budgets[sourceIndexPath.section]
+        budgets.remove(at: sourceIndexPath.section)
+        budgets.insert(object, at: destinationIndexPath.section)
+        print("\(sourceIndexPath.section) \(destinationIndexPath.section)")
+        // REWRITEN BELOW
+        //var i = 0
+        //for object in objects {
+        //    object.setValue(i += 1, forKey: "orderPosition")
+        //}
+        
+        for (index, item) in budgets.enumerated() {
+            item.orderPosition = Int32(index)
+        }
+        
+        saveModel()
+        //self.controller.delegate = self
+        
+    }
+
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         performSegue(withIdentifier: "goToTransactions", sender: self)
+        performSegue(withIdentifier: "goToTransactions", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! TransactionTableViewController
-        
-        if let indexPath = tableView.indexPathForSelectedRow {
-            destinationVC.selectedBudget = budgets[indexPath.section]
-            destinationVC.title = budgets[indexPath.section].name
+        if segue.identifier == "goToTransactions" {
+            let destinationVC = segue.destination as! TransactionTableViewController
+            
+            if let indexPath = tableView.indexPathForSelectedRow {
+                destinationVC.selectedBudget = budgets[indexPath.section]
+                destinationVC.title = budgets[indexPath.section].name
+            }
+            destinationVC.tableView.reloadData()
         }
-        destinationVC.tableView.reloadData()
+        else if segue.identifier == "toPopup" {
+            let destinationVC = segue.destination as! PopupViewController
+            destinationVC.budgets = budgets
+        }
     }
     
     
-
-
 }
 

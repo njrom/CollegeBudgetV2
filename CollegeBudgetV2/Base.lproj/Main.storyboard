@@ -90,7 +90,14 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Budgets" id="R9u-YA-31o"/>
+                    <navigationItem key="navigationItem" title="Budgets" largeTitleDisplayMode="always" id="R9u-YA-31o">
+                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="Qlj-wI-Hgy">
+                            <color key="tintColor" name="HeaderTextColor"/>
+                            <connections>
+                                <segue destination="hqN-sj-3LT" kind="presentation" identifier="toPopup" modalPresentationStyle="overCurrentContext" id="7ag-Xt-Yfl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="4RH-FJ-Nfo" kind="show" identifier="goToTransactions" id="Ykr-74-MQl"/>
@@ -100,20 +107,77 @@
             </objects>
             <point key="canvasLocation" x="-1098.4000000000001" y="-44.527736131934034"/>
         </scene>
-        <!--View Controller-->
+        <!--Popup View Controller-->
         <scene sceneID="Rko-mE-0du">
             <objects>
-                <viewController id="hqN-sj-3LT" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overCurrentContext" id="hqN-sj-3LT" customClass="PopupViewController" customModule="CollegeBudgetV2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="S1c-lr-Wub">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cRT-FM-2hb">
+                                <rect key="frame" x="67.5" y="137.5" width="240" height="170"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="rvF-WV-0QI">
+                                        <rect key="frame" x="71.5" y="35.5" width="97" height="101"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Checking: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LcB-r0-6Us">
+                                                <rect key="frame" x="0.0" y="0.0" width="97" height="25"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="21"/>
+                                                <color key="textColor" name="ExpenseGreenColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Savings 1:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EcV-aT-1fw">
+                                                <rect key="frame" x="0.0" y="38" width="97" height="25"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="21"/>
+                                                <color key="textColor" name="IncomeBlueColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Savings 2:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a86-Q3-vF8">
+                                                <rect key="frame" x="0.0" y="76" width="97" height="25"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="21"/>
+                                                <color key="textColor" name="IncomeBlueColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" name="FrameColor"/>
+                                <constraints>
+                                    <constraint firstItem="rvF-WV-0QI" firstAttribute="centerY" secondItem="cRT-FM-2hb" secondAttribute="centerY" constant="1" id="Ebg-rK-66u"/>
+                                    <constraint firstAttribute="height" constant="170" id="NYo-mJ-oYo"/>
+                                    <constraint firstItem="rvF-WV-0QI" firstAttribute="centerX" secondItem="cRT-FM-2hb" secondAttribute="centerX" id="SWW-4U-xwe"/>
+                                    <constraint firstAttribute="width" constant="240" id="iYs-au-xeB"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="cRT-FM-2hb" firstAttribute="centerX" secondItem="S1c-lr-Wub" secondAttribute="centerX" id="Fc3-vm-yCr"/>
+                            <constraint firstItem="cRT-FM-2hb" firstAttribute="centerY" secondItem="S1c-lr-Wub" secondAttribute="centerY" multiplier="2:3" id="G7h-Xk-x3f"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="4IB-dS-hsm"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="uBZ-QI-2w0" appends="YES" id="Yy9-aG-JH0"/>
+                        </connections>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="checkingLabel" destination="LcB-r0-6Us" id="Zls-BU-TW5"/>
+                        <outlet property="popupView" destination="cRT-FM-2hb" id="GGO-Ya-nqz"/>
+                        <outlet property="savings1Label" destination="EcV-aT-1fw" id="tUW-xc-ARW"/>
+                        <outlet property="savings2Label" destination="a86-Q3-vF8" id="MjD-C0-IUC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qUL-SV-a8c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="uBZ-QI-2w0">
+                    <connections>
+                        <action selector="screenTapped:" destination="hqN-sj-3LT" id="NVK-1c-VOG"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-1098" y="659"/>
+            <point key="canvasLocation" x="-1098" y="700"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="T2E-lB-3VA">
@@ -149,7 +213,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pul-4N-d2O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-311.19999999999999" y="658.92053973013503"/>
+            <point key="canvasLocation" x="-311" y="700"/>
         </scene>
         <!--SelectedBudget-->
         <scene sceneID="LDe-L2-lwY">
@@ -255,7 +319,7 @@
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" name="CellColor"/>
-                                    <color key="tintColor" name="ButtonColor"/>
+                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="ujM-WW-GqW" firstAttribute="top" secondItem="R44-4K-1Fy" secondAttribute="top" constant="40" id="20A-Ru-Jev"/>
                                         <constraint firstAttribute="trailing" secondItem="k1Q-jZ-ZfZ" secondAttribute="trailing" constant="16" id="N7a-dK-uro"/>
@@ -306,13 +370,14 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" barStyle="black" translucent="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" largeTitles="YES" id="m22-9w-qGV">
-                        <rect key="frame" x="0.0" y="20" width="375" height="98"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" name="FrameColor"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                             <color key="textColor" red="0.96078431372549022" green="0.74117647058823533" blue="0.023529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
@@ -335,17 +400,23 @@
     </scenes>
     <resources>
         <image name="shopping-cart" width="384" height="384"/>
-        <namedColor name="ButtonColor">
-            <color red="0.32941176470588235" green="0.35686274509803922" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="CellColor">
             <color red="0.090196078431372548" green="0.090196078431372548" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="DetailColor">
             <color red="0.098039215686274508" green="0.098039215686274508" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="ExpenseGreenColor">
+            <color red="0.44313725490196076" green="0.96862745098039216" blue="0.3843137254901961" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="FrameColor">
             <color red="0.062745098039215685" green="0.058823529411764705" blue="0.11372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="HeaderTextColor">
+            <color red="0.96078431372549022" green="0.74117647058823533" blue="0.023529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="IncomeBlueColor">
+            <color red="0.019607843137254902" green="0.7686274509803922" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

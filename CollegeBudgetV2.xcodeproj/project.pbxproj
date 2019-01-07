@@ -17,6 +17,7 @@
 		AF6D2BA321DC28E60079479A /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6D2BA221DC28E60079479A /* TransactionTableViewCell.swift */; };
 		AF73D26021D83A4800ED98C7 /* BudgetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF73D25F21D83A4800ED98C7 /* BudgetTableViewCell.swift */; };
 		AF73D26221D83EFF00ED98C7 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF73D26121D83EFF00ED98C7 /* CircularProgressView.swift */; };
+		AFB0514921E1A6A1005DE883 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB0514821E1A6A1005DE883 /* PopupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		AF6D2BA221DC28E60079479A /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		AF73D25F21D83A4800ED98C7 /* BudgetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTableViewCell.swift; sourceTree = "<group>"; };
 		AF73D26121D83EFF00ED98C7 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
+		AFB0514821E1A6A1005DE883 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			children = (
 				AF0736B021D0734900CA10B7 /* BudgetTableViewController.swift */,
 				AF6D2B9C21DC231F0079479A /* TransactionTableViewController.swift */,
+				AFB0514821E1A6A1005DE883 /* PopupViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 				AF73D26021D83A4800ED98C7 /* BudgetTableViewCell.swift in Sources */,
 				AF73D26221D83EFF00ED98C7 /* CircularProgressView.swift in Sources */,
 				AF0736B721D0734900CA10B7 /* CollegeBudgetV2.xcdatamodeld in Sources */,
+				AFB0514921E1A6A1005DE883 /* PopupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
