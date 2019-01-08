@@ -177,7 +177,7 @@ class TransactionTableViewController: UITableViewController, TransactionCellDele
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! BudgetTableViewController
+        let destinationVC = segue.destination as! BudgetViewController
         destinationVC.tableView.reloadData()
     }
     

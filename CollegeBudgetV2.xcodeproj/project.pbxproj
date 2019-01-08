@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AF0736AF21D0734900CA10B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0736AE21D0734900CA10B7 /* AppDelegate.swift */; };
-		AF0736B121D0734900CA10B7 /* BudgetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0736B021D0734900CA10B7 /* BudgetTableViewController.swift */; };
+		AF0736B121D0734900CA10B7 /* BudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0736B021D0734900CA10B7 /* BudgetViewController.swift */; };
 		AF0736B421D0734900CA10B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF0736B221D0734900CA10B7 /* Main.storyboard */; };
 		AF0736B721D0734900CA10B7 /* CollegeBudgetV2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AF0736B521D0734900CA10B7 /* CollegeBudgetV2.xcdatamodeld */; };
 		AF0736B921D0734A00CA10B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF0736B821D0734A00CA10B7 /* Assets.xcassets */; };
@@ -23,7 +23,7 @@
 /* Begin PBXFileReference section */
 		AF0736AB21D0734900CA10B7 /* CollegeBudgetV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollegeBudgetV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF0736AE21D0734900CA10B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AF0736B021D0734900CA10B7 /* BudgetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTableViewController.swift; sourceTree = "<group>"; };
+		AF0736B021D0734900CA10B7 /* BudgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetViewController.swift; sourceTree = "<group>"; };
 		AF0736B321D0734900CA10B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AF0736B621D0734900CA10B7 /* CollegeBudgetV2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CollegeBudgetV2.xcdatamodel; sourceTree = "<group>"; };
 		AF0736B821D0734A00CA10B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 		AF6D2BA021DC28AD0079479A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				AF0736B021D0734900CA10B7 /* BudgetTableViewController.swift */,
+				AF0736B021D0734900CA10B7 /* BudgetViewController.swift */,
 				AF6D2B9C21DC231F0079479A /* TransactionTableViewController.swift */,
 				AFB0514821E1A6A1005DE883 /* PopupViewController.swift */,
 			);
@@ -185,7 +185,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF0736B121D0734900CA10B7 /* BudgetTableViewController.swift in Sources */,
+				AF0736B121D0734900CA10B7 /* BudgetViewController.swift in Sources */,
 				AF6D2BA321DC28E60079479A /* TransactionTableViewCell.swift in Sources */,
 				AF0736AF21D0734900CA10B7 /* AppDelegate.swift in Sources */,
 				AF6D2B9D21DC231F0079479A /* TransactionTableViewController.swift in Sources */,
@@ -339,12 +339,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 33A4PKE82K;
 				INFOPLIST_FILE = CollegeBudgetV2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = njrom.CollegeBudgetV2;
+				PRODUCT_BUNDLE_IDENTIFIER = njrom.CollegeBudgetV3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -356,12 +357,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 33A4PKE82K;
 				INFOPLIST_FILE = CollegeBudgetV2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = njrom.CollegeBudgetV2;
+				PRODUCT_BUNDLE_IDENTIFIER = njrom.CollegeBudgetV3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

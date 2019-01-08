@@ -9,9 +9,10 @@
 import UIKit
 import CoreData
 
-class BudgetTableViewController: UITableViewController {
+class BudgetViewController: UIViewController {
     
     
+    @IBOutlet var tableView: UITableView!
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var navigationBarAppearace = UINavigationBar.appearance()
     var budgets = [Budget]()
@@ -23,8 +24,8 @@ class BudgetTableViewController: UITableViewController {
         
         // Do any additional setup after loading the view, typically from a nib.
         tableView.rowHeight = 80.0
-        tableView.dragDelegate = self
-        tableView.dropDelegate = self
+        tableView.delegate = self
+        tableView.dataSource = self
 
         
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
@@ -36,18 +37,71 @@ class BudgetTableViewController: UITableViewController {
         let dateString = formatter.string(from: date)
         self.title = dateString
         self.navigationItem.title = dateString
-        // addTestData()
+        addTestData()
         loadModel()
         
-        tableView.setEditing(true, animated: true)
+        tableView.setEditing(false, animated: true)
         
         
     }
     
-    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        return model.dragItems(for: indexPath)
+    func loadModel() {
+        let request : NSFetchRequest<Budget> = Budget.fetchRequest()
+        request.sortDescriptors = [sortDescriptor]
+        do {
+            budgets = try context.fetch(request)
+        } catch {
+            print("Error loading categories \(error)")
+        }
+        
+        tableView.reloadData()
+        
     }
     
+    func saveModel() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving category \(error)")
+        }
+        
+        tableView.reloadData()
+        
+    }
+    
+    
+
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+    
+  
+    
+
+
+    
+
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToTransactions" {
+            let destinationVC = segue.destination as! TransactionTableViewController
+            
+            if let indexPath = tableView.indexPathForSelectedRow {
+                destinationVC.selectedBudget = budgets[indexPath.section]
+                destinationVC.title = budgets[indexPath.section].name
+            }
+            destinationVC.tableView.reloadData()
+        }
+        else if segue.identifier == "toPopup" {
+            let destinationVC = segue.destination as! PopupViewController
+            destinationVC.budgets = budgets
+        }
+    }
+    
+    // MARK: Test Specific Code
     func addTestData() {
         
         let budgetEntity4 = NSEntityDescription.insertNewObject(forEntityName: "Budget", into: context)
@@ -101,49 +155,65 @@ class BudgetTableViewController: UITableViewController {
         saveModel()
     }
     
-    func loadModel() {
-        let request : NSFetchRequest<Budget> = Budget.fetchRequest()
-        request.sortDescriptors = [sortDescriptor]
-        do {
-            budgets = try context.fetch(request)
-        } catch {
-            print("Error loading categories \(error)")
+}
+
+extension BudgetViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let resetAlert = UIAlertController(title: NSLocalizedString("str_reset", comment: ""), message: NSLocalizedString("str_reset", comment: ""), preferredStyle: UIAlertController.Style.alert)
+            
+            resetAlert.addAction(UIAlertAction(title: NSLocalizedString("str_continue", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
+                self.budgets.remove(at: indexPath.row)
+                // TODO: Figure out how to delete from coreData
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
+            }))
+            
+            resetAlert.addAction(UIAlertAction(title: NSLocalizedString("str_cancel", comment: ""), style: .cancel, handler: { (action: UIAlertAction!) in
+                
+            }))
+            saveModel()
+            present(resetAlert, animated: true, completion: nil)
+            
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+        // NOT NEEDED, SINCE I ASSUME THAT YOU ALREADY FETCHED ON INITIAL LOAD
+        // attemptFetch()
+        
+        // NOT NEEDED
+        //self.controller.delegate = nil
+        
+        let object = budgets[sourceIndexPath.section]
+        budgets.remove(at: sourceIndexPath.section)
+        budgets.insert(object, at: destinationIndexPath.section)
+        print("\(sourceIndexPath.section) \(destinationIndexPath.section)")
+        // REWRITEN BELOW
+        //var i = 0
+        //for object in objects {
+        //    object.setValue(i += 1, forKey: "orderPosition")
+        //}
+        
+        for (index, item) in budgets.enumerated() {
+            item.orderPosition = Int32(index)
         }
         
-        tableView.reloadData()
+        saveModel()
+        //self.controller.delegate = self
         
     }
     
-    func saveModel() {
-        do {
-            try context.save()
-        } catch {
-            print("Error saving category \(error)")
-        }
-        
-        tableView.reloadData()
-        
-    }
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return budgets.count
     }
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 15
-        
-    }
-    
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView()
-        view.backgroundColor = UIColor.clear
-        return view
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BudgetCell") as! BudgetTableViewCell
         let budget = budgets[indexPath.section]
         
@@ -170,77 +240,27 @@ class BudgetTableViewController: UITableViewController {
         return cell
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
-    }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let resetAlert = UIAlertController(title: NSLocalizedString("str_reset", comment: ""), message: NSLocalizedString("str_reset", comment: ""), preferredStyle: UIAlertController.Style.alert)
-            
-            resetAlert.addAction(UIAlertAction(title: NSLocalizedString("str_continue", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
-                self.budgets.remove(at: indexPath.row)
-                // TODO: Figure out how to delete from coreData
-                self.tableView.deleteRows(at: [indexPath], with: .fade)
-            }))
-            
-            resetAlert.addAction(UIAlertAction(title: NSLocalizedString("str_cancel", comment: ""), style: .cancel, handler: { (action: UIAlertAction!) in
-                
-            }))
-            saveModel()
-            present(resetAlert, animated: true, completion: nil)
-            
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        
-        // NOT NEEDED, SINCE I ASSUME THAT YOU ALREADY FETCHED ON INITIAL LOAD
-        // attemptFetch()
-        
-        // NOT NEEDED
-        //self.controller.delegate = nil
-        
-        let object = budgets[sourceIndexPath.section]
-        budgets.remove(at: sourceIndexPath.section)
-        budgets.insert(object, at: destinationIndexPath.section)
-        print("\(sourceIndexPath.section) \(destinationIndexPath.section)")
-        // REWRITEN BELOW
-        //var i = 0
-        //for object in objects {
-        //    object.setValue(i += 1, forKey: "orderPosition")
-        //}
-        
-        for (index, item) in budgets.enumerated() {
-            item.orderPosition = Int32(index)
-        }
-        
-        saveModel()
-        //self.controller.delegate = self
-        
-    }
+}
 
+extension BudgetViewController: UITableViewDelegate {
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "goToTransactions", sender: self)
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 15
+        
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToTransactions" {
-            let destinationVC = segue.destination as! TransactionTableViewController
-            
-            if let indexPath = tableView.indexPathForSelectedRow {
-                destinationVC.selectedBudget = budgets[indexPath.section]
-                destinationVC.title = budgets[indexPath.section].name
-            }
-            destinationVC.tableView.reloadData()
-        }
-        else if segue.identifier == "toPopup" {
-            let destinationVC = segue.destination as! PopupViewController
-            destinationVC.budgets = budgets
-        }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = UIColor.clear
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToTransactions", sender: self)
     }
     
     
 }
+
+
 
