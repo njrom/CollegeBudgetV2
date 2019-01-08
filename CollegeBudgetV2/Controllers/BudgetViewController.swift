@@ -27,24 +27,34 @@ class BudgetViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
 
-        
+        // Letting it blend with View in TableViewController TODO: Switch this later, when converted to UIView
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         self.navigationController?.toolbar.setValue(true, forKey: "hidesShadow")
+        
+        // Set title of VC
         let formatter = DateFormatter()
         let date = Date()
         formatter.dateStyle = DateFormatter.Style.long
-        
         let dateString = formatter.string(from: date)
         self.title = dateString
         self.navigationItem.title = dateString
-        addTestData()
-        loadModel()
+        
+        
+        
+        // addTestData()
         
         tableView.setEditing(false, animated: true)
         
-        
+        loadModel()
     }
     
+    // Updates View when transaction vc dismissed
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+    
+    
+    // MARK: Core Data Methods
     func loadModel() {
         let request : NSFetchRequest<Budget> = Budget.fetchRequest()
         request.sortDescriptors = [sortDescriptor]
@@ -68,23 +78,8 @@ class BudgetViewController: UIViewController {
         tableView.reloadData()
         
     }
-    
-    
 
-    
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
-    }
-    
-  
-    
-
-
-    
-
-    
+    // MARK: Segue Handeler
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToTransactions" {
             let destinationVC = segue.destination as! TransactionTableViewController
@@ -159,23 +154,25 @@ class BudgetViewController: UIViewController {
 
 extension BudgetViewController: UITableViewDataSource {
     
+    // TODO: Implement Budget Deletion
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let resetAlert = UIAlertController(title: NSLocalizedString("str_reset", comment: ""), message: NSLocalizedString("str_reset", comment: ""), preferredStyle: UIAlertController.Style.alert)
             
-            resetAlert.addAction(UIAlertAction(title: NSLocalizedString("str_continue", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
-                self.budgets.remove(at: indexPath.row)
-                // TODO: Figure out how to delete from coreData
-                self.tableView.deleteRows(at: [indexPath], with: .fade)
-            }))
+            context.delete(self.budgets[indexPath.section])
             
-            resetAlert.addAction(UIAlertAction(title: NSLocalizedString("str_cancel", comment: ""), style: .cancel, handler: { (action: UIAlertAction!) in
+
+
+            
+            do {
+                try context.save()
+                self.budgets.removeAll()
+                self.loadModel()
+            } catch {
                 
-            }))
-            saveModel()
-            present(resetAlert, animated: true, completion: nil)
+            }
             
         }
+        
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
@@ -216,10 +213,10 @@ extension BudgetViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BudgetCell") as! BudgetTableViewCell
         let budget = budgets[indexPath.section]
-        
+        budget.orderPosition = Int32(indexPath.section)
         var color = UIColor(named: "ExpenseGreenColor")!
         if budget.isSavings {
-            color = UIColor(red:0.00, green:0.86, blue:1.00, alpha:1.0)
+            color = UIColor(named: "IncomeBlueColor")!
         }
         
         cell.nameLabel.text = budget.name!
@@ -231,13 +228,17 @@ extension BudgetViewController: UITableViewDataSource {
         cell.remainingLabel.textColor = color
         cell.progressView.progressLayer.strokeColor = color.cgColor
         cell.iconImageView?.image = UIImage(named: budget.imageName!)
-        cell.progressView.progress = Float(CGFloat((budget.currentBalence/budget.initialBalence)))
-        
         cell.contentView.backgroundColor = UIColor(named: "DetailColor")
         cell.backgroundColor = UIColor.clear
         cell.contentView.layer.cornerRadius = 20
         cell.contentView.layer.masksToBounds = true
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let budget = budgets[indexPath.section]
+        let budgetCell = cell as! BudgetTableViewCell
+        budgetCell.progressView.progress = Float(CGFloat((budget.currentBalence/budget.initialBalence)))
     }
     
 }

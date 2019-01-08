@@ -246,15 +246,7 @@
                             <outlet property="delegate" destination="4RH-FJ-Nfo" id="1sF-GF-tpQ"/>
                         </connections>
                     </tableView>
-                    <toolbarItems>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="A8p-YM-kEo"/>
-                        <barButtonItem title="Add Transaction" style="done" id="eZ6-80-NYb">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="addTransactionHit:" destination="4RH-FJ-Nfo" id="7b7-N7-6F1"/>
-                            </connections>
-                        </barButtonItem>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -270,11 +262,11 @@
         <!--Navigation Controller-->
         <scene sceneID="sd9-jJ-0E1">
             <objects>
-                <navigationController extendedLayoutIncludesOpaqueBars="YES" toolbarHidden="NO" id="XAV-Bu-3Ms" sceneMemberID="viewController">
+                <navigationController extendedLayoutIncludesOpaqueBars="YES" id="XAV-Bu-3Ms" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" barStyle="black" translucent="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" largeTitles="YES" id="m22-9w-qGV">
-                        <rect key="frame" x="0.0" y="20" width="375" height="98"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" name="FrameColor"/>
@@ -289,7 +281,6 @@
                         </textAttributes>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="qc4-Ry-1Ie">
-                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" name="FrameColor"/>
                     </toolbar>
@@ -306,13 +297,19 @@
             <objects>
                 <viewController id="kyb-eu-408" customClass="BudgetViewController" customModule="CollegeBudgetV2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4DO-oa-2nS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="505"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="549"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T3A-u0-iLe">
-                                <rect key="frame" x="0.0" y="59" width="375" height="387"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ctn-Is-SOU">
+                                <rect key="frame" x="132" y="174" width="375" height="529"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T3A-u0-iLe">
+                                <rect key="frame" x="0.0" y="-1" width="375" height="550"/>
                                 <color key="backgroundColor" name="FrameColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="550" id="wpi-W9-7i0"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BudgetCell" rowHeight="80" id="vH0-Hw-6Fc" customClass="BudgetTableViewCell" customModule="CollegeBudgetV2" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="80"/>
@@ -371,8 +368,20 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uhy-B1-Xa4">
+                                <rect key="frame" x="316" y="457" width="34" height="72"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="50"/>
+                                <state key="normal" title="+"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fxY-Vd-udL" firstAttribute="bottom" secondItem="Uhy-B1-Xa4" secondAttribute="bottom" constant="20" id="2dt-LV-qY4"/>
+                            <constraint firstItem="T3A-u0-iLe" firstAttribute="trailing" secondItem="fxY-Vd-udL" secondAttribute="trailing" id="9En-JO-X9P"/>
+                            <constraint firstItem="fxY-Vd-udL" firstAttribute="bottom" secondItem="T3A-u0-iLe" secondAttribute="bottom" id="GZ5-H5-HtS"/>
+                            <constraint firstItem="T3A-u0-iLe" firstAttribute="leading" secondItem="fxY-Vd-udL" secondAttribute="leading" id="UdH-8d-JH4"/>
+                            <constraint firstItem="Uhy-B1-Xa4" firstAttribute="trailing" secondItem="fxY-Vd-udL" secondAttribute="trailing" constant="-25" id="f8b-Su-wjK"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="fxY-Vd-udL"/>
                     </view>
                     <navigationItem key="navigationItem" title="Budgets" largeTitleDisplayMode="always" id="rrS-J3-DLh">
@@ -390,7 +399,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HgX-m6-C6j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1098" y="-44"/>
+            <point key="canvasLocation" x="-1098" y="-45"/>
         </scene>
     </scenes>
     <resources>
