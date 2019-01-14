@@ -13,7 +13,7 @@
 		AF0736B721D0734900CA10B7 /* CollegeBudgetV2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AF0736B521D0734900CA10B7 /* CollegeBudgetV2.xcdatamodeld */; };
 		AF0736B921D0734A00CA10B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF0736B821D0734A00CA10B7 /* Assets.xcassets */; };
 		AF0736BC21D0734A00CA10B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF0736BA21D0734A00CA10B7 /* LaunchScreen.storyboard */; };
-		AF6D2B9D21DC231F0079479A /* TransactionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6D2B9C21DC231F0079479A /* TransactionTableViewController.swift */; };
+		AF6D2B9D21DC231F0079479A /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6D2B9C21DC231F0079479A /* TransactionViewController.swift */; };
 		AF6D2BA321DC28E60079479A /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6D2BA221DC28E60079479A /* TransactionTableViewCell.swift */; };
 		AF73D26021D83A4800ED98C7 /* BudgetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF73D25F21D83A4800ED98C7 /* BudgetTableViewCell.swift */; };
 		AF73D26221D83EFF00ED98C7 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF73D26121D83EFF00ED98C7 /* CircularProgressView.swift */; };
@@ -29,7 +29,7 @@
 		AF0736B821D0734A00CA10B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF0736BB21D0734A00CA10B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF0736BD21D0734A00CA10B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AF6D2B9C21DC231F0079479A /* TransactionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewController.swift; sourceTree = "<group>"; };
+		AF6D2B9C21DC231F0079479A /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
 		AF6D2BA221DC28E60079479A /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		AF73D25F21D83A4800ED98C7 /* BudgetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTableViewCell.swift; sourceTree = "<group>"; };
 		AF73D26121D83EFF00ED98C7 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
@@ -99,7 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				AF0736B021D0734900CA10B7 /* BudgetViewController.swift */,
-				AF6D2B9C21DC231F0079479A /* TransactionTableViewController.swift */,
+				AF6D2B9C21DC231F0079479A /* TransactionViewController.swift */,
 				AFB0514821E1A6A1005DE883 /* PopupViewController.swift */,
 			);
 			path = Controllers;
@@ -188,7 +188,7 @@
 				AF0736B121D0734900CA10B7 /* BudgetViewController.swift in Sources */,
 				AF6D2BA321DC28E60079479A /* TransactionTableViewCell.swift in Sources */,
 				AF0736AF21D0734900CA10B7 /* AppDelegate.swift in Sources */,
-				AF6D2B9D21DC231F0079479A /* TransactionTableViewController.swift in Sources */,
+				AF6D2B9D21DC231F0079479A /* TransactionViewController.swift in Sources */,
 				AF73D26021D83A4800ED98C7 /* BudgetTableViewCell.swift in Sources */,
 				AF73D26221D83EFF00ED98C7 /* CircularProgressView.swift in Sources */,
 				AF0736B721D0734900CA10B7 /* CollegeBudgetV2.xcdatamodeld in Sources */,
@@ -339,13 +339,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 33A4PKE82K;
+				DEVELOPMENT_TEAM = 44NPYDV722;
 				INFOPLIST_FILE = CollegeBudgetV2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = njrom.CollegeBudgetV3;
+				PRODUCT_BUNDLE_IDENTIFIER = njrom.CollegeBudgetV2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -357,13 +357,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 33A4PKE82K;
+				DEVELOPMENT_TEAM = 44NPYDV722;
 				INFOPLIST_FILE = CollegeBudgetV2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = njrom.CollegeBudgetV3;
+				PRODUCT_BUNDLE_IDENTIFIER = njrom.CollegeBudgetV2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

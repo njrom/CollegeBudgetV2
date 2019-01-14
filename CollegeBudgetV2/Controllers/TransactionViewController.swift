@@ -9,16 +9,18 @@
 import UIKit
 import CoreData
 
-class TransactionTableViewController: UITableViewController, TransactionCellDelegate {
+class TransactionViewController: UIViewController, TransactionCellDelegate {
     
     
     
+    @IBOutlet var tableView: UITableView!
     @IBOutlet weak var balenceLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var budgetProgressView: CircularProgressView!
     
     
     var transactionsArray = [Transaction]()
+    let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
     
     var selectedBudget : Budget? {
         didSet{
@@ -32,6 +34,8 @@ class TransactionTableViewController: UITableViewController, TransactionCellDele
         super.viewDidLoad()
         tableView.allowsSelection = false
         tableView.rowHeight = 75.0
+        tableView.dataSource = self
+        tableView.delegate = self
         var color = UIColor(named: "ExpenseGreenColor")!
         if selectedBudget!.isSavings {
             color = UIColor(red:0.00, green:0.86, blue:1.00, alpha:1.0)
@@ -44,11 +48,12 @@ class TransactionTableViewController: UITableViewController, TransactionCellDele
         amountLabel.textColor = color
         budgetProgressView.progress = Float(CGFloat((selectedBudget!.currentBalence/selectedBudget!.initialBalence)))
         budgetProgressView.animateView(from: 0.0, to: progressRatio , in: 1.0)
+        tableView.reloadData()
+        
     }
     
-    
+
     func loadItems(with request: NSFetchRequest<Transaction> = Transaction.fetchRequest(), predicate: NSPredicate? = nil) {
-        
         let categoryPredicate = NSPredicate(format: "parentBudget.name MATCHES %@", selectedBudget!.name!)
         
         if let addtionalPredicate = predicate {
@@ -59,79 +64,40 @@ class TransactionTableViewController: UITableViewController, TransactionCellDele
         
         
         do {
+            request.sortDescriptors = [sortDescriptor]
             transactionsArray = try context.fetch(request)
         } catch {
             print("Error fetching data from context \(error)")
         }
+
         
-        tableView.reloadData()
         
-    }
-    
-    // MARK: - Table view data source
-    
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return transactionsArray.count
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 6
         
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView()
-        view.backgroundColor = UIColor.clear
-        return view
-    }
     
     
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let transaction = transactionsArray[indexPath.section]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionCell") as! TransactionTableViewCell
-        cell.delegate = self
-        var color = UIColor(red:0.47, green:1.00, blue:0.45, alpha:1.0)
-        cell.isSavings = transaction.isIncome
-        cell.toggleTransactionOutlet.setTitleColor(UIColor(named: "IncomeBlueColor"), for: .normal)
-        if transaction.isIncome {
-            color = UIColor(red:0.00, green:0.86, blue:1.00, alpha:1.0)
-            cell.toggleTransactionOutlet.setTitleColor(UIColor(named: "IncomeBlueColor"), for: .normal)
-            cell.toggleTransactionOutlet.setTitle("Savings", for: .normal)
-        } else {
-            cell.toggleTransactionOutlet.setTitleColor(UIColor(named: "ExpenseGreenColor"), for: .normal)
-            cell.toggleTransactionOutlet.setTitle("Expense", for: .normal)
-        }
-        cell.amountTextField.textColor = color
-        cell.nameTextField.text = transaction.name
-        cell.nameTextField.tag = indexPath.section
-        cell.tag = indexPath.section
-        cell.amountTextField.tag = indexPath.section
-        cell.amountTextField.text = String(format: "$%.02f", transaction.amount)
-        if transaction.name == nil {
-            cell.nameTextField.becomeFirstResponder()
-            print("FirstResponder")
-        }
-        cell.backgroundColor  = UIColor.clear
-        cell.contentView.layer.cornerRadius = 10
-        cell.contentView.layer.masksToBounds = true
-        return cell
-    }
     
-    @IBAction func addTransactionHit(_ sender: UIBarButtonItem) {
+    @IBAction func addTransactionHit(_ sender: UIButton) {
+        print(transactionsArray)
         let newTransaction = Transaction(context: context)
-        
+        print("Hit")
         newTransaction.isIncome = selectedBudget!.isSavings
         newTransaction.parentBudget = selectedBudget
         newTransaction.date = Date()
-        transactionsArray.append(newTransaction)
-        tableView.reloadData()
+        transactionsArray.insert(newTransaction, at: 0)
+        // transactionsArray.append(newTransaction)
+        newTransaction.orderPosition = Int32(transactionsArray.firstIndex(of: newTransaction)!)
+
+        let indexPath = IndexPath(item: 0, section: 0)
+        tableView.insertRows(at: [indexPath], with: UITableView.RowAnimation.bottom)
+        //tableView.reloadData()
+        
+
     }
+    
+    
     
     // Delegate Method that pulls data from the textFields
     func newTransactions(from textField: UITextField , name: String?, amountString: String?) {
@@ -196,13 +162,93 @@ class TransactionTableViewController: UITableViewController, TransactionCellDele
         
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+}
+
+
+
+extension TransactionViewController : UITableViewDataSource {
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let transaction = transactionsArray[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionCell") as! TransactionTableViewCell
+        cell.delegate = self
+        var color = UIColor(red:0.47, green:1.00, blue:0.45, alpha:1.0)
+        cell.isSavings = transaction.isIncome
+        cell.toggleTransactionOutlet.setTitleColor(UIColor(named: "IncomeBlueColor"), for: .normal)
+        if transaction.isIncome {
+            color = UIColor(red:0.00, green:0.86, blue:1.00, alpha:1.0)
+            cell.toggleTransactionOutlet.setTitleColor(UIColor(named: "IncomeBlueColor"), for: .normal)
+            cell.toggleTransactionOutlet.setTitle("Savings", for: .normal)
+        } else {
+            cell.toggleTransactionOutlet.setTitleColor(UIColor(named: "ExpenseGreenColor"), for: .normal)
+            cell.toggleTransactionOutlet.setTitle("Expense", for: .normal)
+        }
+        cell.amountTextField.textColor = color
+        cell.nameTextField.text = transaction.name
+        cell.nameTextField.tag = indexPath.row
+        cell.tag = indexPath.row
+        cell.amountTextField.tag = indexPath.row
+        cell.amountTextField.text = String(format: "$%.02f", transaction.amount)
+        if transaction.name == nil {
+            cell.nameTextField.becomeFirstResponder()
+            // print("FirstResponder")
+        }
+        cell.backgroundColor  = UIColor.clear
+        cell.contentView.layer.cornerRadius = 10
+        cell.contentView.layer.masksToBounds = true
+       print("loading")
+        if indexPath.row % 2 == 0 {
+            // cell.backgroundColor = UIColor(named: "CellColor")
+            cell.contentView.backgroundColor = UIColor(named: "CellColor2")
+            cell.contentView.setNeedsDisplay()
+            print("Color")
+        } else {
+            cell.contentView.backgroundColor = UIColor(named: "CellColor")
+            cell.contentView.setNeedsDisplay()
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row % 2 == 0 {
+            // cell.backgroundColor = UIColor(named: "CellColor")
+            cell.contentView.backgroundColor = UIColor(named: "CellColor2")
+            print("Color")
+        } else {
+            cell.contentView.backgroundColor = UIColor(named: "CellColor")
+        }
+    
+    }
+
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return transactionsArray.count
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    private func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 15
+        
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = UIColor.clear
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
-            context.delete(self.transactionsArray[indexPath.section])
+            context.delete(self.transactionsArray[indexPath.row])
             
             // Must update the Balance as if it were gone
-            let transaction = transactionsArray[indexPath.section]
+            let transaction = transactionsArray[indexPath.row]
             if transaction.isIncome {
                 selectedBudget!.currentBalence = selectedBudget!.currentBalence - transaction.amount
             } else {
@@ -218,11 +264,21 @@ class TransactionTableViewController: UITableViewController, TransactionCellDele
                 try context.save()
                 self.transactionsArray.removeAll()
                 self.loadItems()
+                self.tableView.reloadData()
             } catch {
                 
             }
             
         }
     }
+        
+
     
+}
+
+    extension TransactionViewController: UITableViewDelegate {
+        
+        
+        
+
 }

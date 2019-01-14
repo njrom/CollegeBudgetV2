@@ -16,7 +16,7 @@ class BudgetViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var navigationBarAppearace = UINavigationBar.appearance()
     var budgets = [Budget]()
-    let sortDescriptor = NSSortDescriptor(key: "orderPosition", ascending: true)
+    let sortDescriptor = NSSortDescriptor(key: "orderPosition", ascending: false)
     
     
     override func viewDidLoad() {
@@ -82,13 +82,13 @@ class BudgetViewController: UIViewController {
     // MARK: Segue Handeler
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToTransactions" {
-            let destinationVC = segue.destination as! TransactionTableViewController
+            let destinationVC = segue.destination as! TransactionViewController
             
             if let indexPath = tableView.indexPathForSelectedRow {
                 destinationVC.selectedBudget = budgets[indexPath.section]
                 destinationVC.title = budgets[indexPath.section].name
             }
-            destinationVC.tableView.reloadData()
+            // destinationVC.tableView.reloadData()
         }
         else if segue.identifier == "toPopup" {
             let destinationVC = segue.destination as! PopupViewController
@@ -159,16 +159,13 @@ extension BudgetViewController: UITableViewDataSource {
         if editingStyle == .delete {
             
             context.delete(self.budgets[indexPath.section])
-            
-
-
-            
+        
             do {
                 try context.save()
                 self.budgets.removeAll()
                 self.loadModel()
             } catch {
-                
+                fatalError("Couldn't Modify Data")
             }
             
         }

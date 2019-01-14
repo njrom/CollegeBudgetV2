@@ -44,16 +44,9 @@ class TransactionTableViewCell: UITableViewCell, UITextFieldDelegate{
     }
     
     
-    func collapse() {
-        UIView.animate(withDuration:0.3, delay: 0.0, options: .curveLinear, animations: {
-            
-     
-            self.layoutIfNeeded()
-            
-        }, completion: { finished in
-            
-        })
-    }
+    
+    
+
 
 
     
