@@ -8,14 +8,14 @@
 
 import UIKit
 protocol TransactionCellDelegate: class  {
-    func newTransactions(from: UITextField, name: String?, amountString: String?)
+    func newTransactions(from: Int, name: String?, amountString: String?)
     func transactionToggle(toggle: Bool, tag: Int)
 }
 class TransactionTableViewCell: UITableViewCell, UITextFieldDelegate{
 
 
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var amountTextField: UITextField!
+    @IBOutlet weak var amountTextField: CurrencyField!
 
         
     @IBOutlet weak var toggleTransactionOutlet: UIButton!
@@ -28,6 +28,9 @@ class TransactionTableViewCell: UITableViewCell, UITextFieldDelegate{
         // Initialization code
         nameTextField.delegate = self
         amountTextField.delegate = self
+        
+        amountTextField.addDoneButtonOnKeyboard()
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -37,17 +40,17 @@ class TransactionTableViewCell: UITableViewCell, UITextFieldDelegate{
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        delegate?.newTransactions(from: textField, name: nameTextField.text, amountString: amountTextField.text)
-        print("Fire")
+        amountTextField.becomeFirstResponder()
         return true
     }
     
     
-    
-    
 
-
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.tag == 2 {
+        delegate?.newTransactions(from: self.tag, name: nameTextField.text, amountString: amountTextField.text)
+        }
+    }
 
     
     @IBAction func toggleTransactionType(_ sender: UIButton) {
@@ -61,6 +64,7 @@ class TransactionTableViewCell: UITableViewCell, UITextFieldDelegate{
             
             isSavings = !isSavings
         }
+        delegate?.newTransactions(from: self.tag, name: nameTextField.text, amountString: amountTextField.text)
         delegate?.transactionToggle(toggle: isSavings, tag: self.tag)
     }
 }

@@ -13,20 +13,36 @@ class BudgetViewController: UIViewController {
     
     
     @IBOutlet var tableView: UITableView!
+    var actionButton : ActionButton!
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var navigationBarAppearace = UINavigationBar.appearance()
     var budgets = [Budget]()
-    let sortDescriptor = NSSortDescriptor(key: "orderPosition", ascending: false)
+    let sortDescriptor = NSSortDescriptor(key: "orderPosition", ascending: true)
     
+    
+    func setupButtons(){
+        let google = ActionButtonItem(title: "Add a Budget", image: UIImage(named: "a1"))
+        google.action = { item in self.view.backgroundColor = UIColor.red }
+        let twitter = ActionButtonItem(title: "Add a Transaction", image: UIImage(named: "a1"))
+        twitter.action = { item in self.view.backgroundColor = UIColor.blue }
+
+        actionButton = ActionButton(attachedToView: self.view, items: [google, twitter])
+        actionButton.setTitle("+", forState: UIControl.State())
+        actionButton.backgroundColor = UIColor(red: 238.0/255.0, green: 130.0/255.0, blue: 130.0/255.0, alpha: 1)
+        actionButton.action = { button in button.toggleMenu()}
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupButtons()
         // Do any additional setup after loading the view, typically from a nib.
         tableView.rowHeight = 80.0
         tableView.delegate = self
         tableView.dataSource = self
-
+        
+    
+        
         // Letting it blend with View in TableViewController TODO: Switch this later, when converted to UIView
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         self.navigationController?.toolbar.setValue(true, forKey: "hidesShadow")
@@ -78,7 +94,9 @@ class BudgetViewController: UIViewController {
         tableView.reloadData()
         
     }
+    
 
+    
     // MARK: Segue Handeler
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToTransactions" {
@@ -159,7 +177,7 @@ extension BudgetViewController: UITableViewDataSource {
         if editingStyle == .delete {
             
             context.delete(self.budgets[indexPath.section])
-        
+            
             do {
                 try context.save()
                 self.budgets.removeAll()

@@ -13,6 +13,9 @@
 		AF0736B721D0734900CA10B7 /* CollegeBudgetV2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AF0736B521D0734900CA10B7 /* CollegeBudgetV2.xcdatamodeld */; };
 		AF0736B921D0734A00CA10B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF0736B821D0734A00CA10B7 /* Assets.xcassets */; };
 		AF0736BC21D0734A00CA10B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF0736BA21D0734A00CA10B7 /* LaunchScreen.storyboard */; };
+		AF07E7A321EEB3730096A14A /* ActionButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF07E7A221EEB3730096A14A /* ActionButtonItem.swift */; };
+		AF07E7A521EEB38A0096A14A /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF07E7A421EEB38A0096A14A /* ActionButton.swift */; };
+		AF07E7A721EFBD930096A14A /* CurrencyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF07E7A621EFBD930096A14A /* CurrencyField.swift */; };
 		AF6D2B9D21DC231F0079479A /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6D2B9C21DC231F0079479A /* TransactionViewController.swift */; };
 		AF6D2BA321DC28E60079479A /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6D2BA221DC28E60079479A /* TransactionTableViewCell.swift */; };
 		AF73D26021D83A4800ED98C7 /* BudgetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF73D25F21D83A4800ED98C7 /* BudgetTableViewCell.swift */; };
@@ -29,6 +32,9 @@
 		AF0736B821D0734A00CA10B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF0736BB21D0734A00CA10B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF0736BD21D0734A00CA10B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF07E7A221EEB3730096A14A /* ActionButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonItem.swift; sourceTree = "<group>"; };
+		AF07E7A421EEB38A0096A14A /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		AF07E7A621EFBD930096A14A /* CurrencyField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyField.swift; sourceTree = "<group>"; };
 		AF6D2B9C21DC231F0079479A /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
 		AF6D2BA221DC28E60079479A /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		AF73D25F21D83A4800ED98C7 /* BudgetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTableViewCell.swift; sourceTree = "<group>"; };
@@ -80,6 +86,9 @@
 			isa = PBXGroup;
 			children = (
 				AF73D26121D83EFF00ED98C7 /* CircularProgressView.swift */,
+				AF07E7A221EEB3730096A14A /* ActionButtonItem.swift */,
+				AF07E7A421EEB38A0096A14A /* ActionButton.swift */,
+				AF07E7A621EFBD930096A14A /* CurrencyField.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -188,11 +197,14 @@
 				AF0736B121D0734900CA10B7 /* BudgetViewController.swift in Sources */,
 				AF6D2BA321DC28E60079479A /* TransactionTableViewCell.swift in Sources */,
 				AF0736AF21D0734900CA10B7 /* AppDelegate.swift in Sources */,
+				AF07E7A721EFBD930096A14A /* CurrencyField.swift in Sources */,
 				AF6D2B9D21DC231F0079479A /* TransactionViewController.swift in Sources */,
 				AF73D26021D83A4800ED98C7 /* BudgetTableViewCell.swift in Sources */,
 				AF73D26221D83EFF00ED98C7 /* CircularProgressView.swift in Sources */,
+				AF07E7A321EEB3730096A14A /* ActionButtonItem.swift in Sources */,
 				AF0736B721D0734900CA10B7 /* CollegeBudgetV2.xcdatamodeld in Sources */,
 				AFB0514921E1A6A1005DE883 /* PopupViewController.swift in Sources */,
+				AF07E7A521EEB38A0096A14A /* ActionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

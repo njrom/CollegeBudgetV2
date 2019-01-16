@@ -18,6 +18,7 @@ class TransactionViewController: UIViewController, TransactionCellDelegate {
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var budgetProgressView: CircularProgressView!
     
+
     
     var transactionsArray = [Transaction]()
     let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
@@ -69,9 +70,6 @@ class TransactionViewController: UIViewController, TransactionCellDelegate {
         } catch {
             print("Error fetching data from context \(error)")
         }
-
-        
-        
         
     }
     
@@ -92,6 +90,9 @@ class TransactionViewController: UIViewController, TransactionCellDelegate {
 
         let indexPath = IndexPath(item: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: UITableView.RowAnimation.bottom)
+        let cell = tableView.cellForRow(at: indexPath) as! TransactionTableViewCell
+        cell.nameTextField.becomeFirstResponder()
+        cell.amountTextField.addDoneButtonOnKeyboard()
         //tableView.reloadData()
         
 
@@ -100,23 +101,24 @@ class TransactionViewController: UIViewController, TransactionCellDelegate {
     
     
     // Delegate Method that pulls data from the textFields
-    func newTransactions(from textField: UITextField , name: String?, amountString: String?) {
-        let index = textField.tag
-        let amount = Double(amountString!.replacingOccurrences(of: "$", with: ""))!
+    func newTransactions(from index: Int , name: String?, amountString: String?) {
+        
+        let moneyString = amountString!.replacingOccurrences(of: ",", with: "")
+        let amount = Double(moneyString.replacingOccurrences(of: "$", with: ""))!
         transactionsArray[index].name = name
         
         if transactionsArray[index].isIncome {
             print("Income")
             selectedBudget!.currentBalence = (selectedBudget!.currentBalence - transactionsArray[index].amount + amount)
             let newRatio = Float(CGFloat(selectedBudget!.currentBalence/selectedBudget!.initialBalence))
-            budgetProgressView.animateView(from: budgetProgressView.progress, to: newRatio, in: Double(newRatio + 1))
+            budgetProgressView.animateView(from: budgetProgressView.progress, to: newRatio, in: 1.0)
             // budgetProgressView.progress = newRatio
             balenceLabel.text = String(format: "$%.02f", selectedBudget!.currentBalence)
             transactionsArray[index].amount = amount
         } else {
             selectedBudget!.currentBalence = (selectedBudget!.currentBalence + transactionsArray[index].amount - amount)
             let newRatio = Float(CGFloat(selectedBudget!.currentBalence/selectedBudget!.initialBalence))
-            budgetProgressView.animateView(from: budgetProgressView.progress, to: newRatio, in: Double(newRatio + 0.2))
+            budgetProgressView.animateView(from: budgetProgressView.progress, to: newRatio, in: 1.0)
             // budgetProgressView.progress = newRatio
             balenceLabel.text = String(format: "$%.02f", selectedBudget!.currentBalence)
             transactionsArray[index].amount = amount
@@ -134,7 +136,7 @@ class TransactionViewController: UIViewController, TransactionCellDelegate {
             selectedBudget?.currentBalence = (selectedBudget!.currentBalence) - 2*transactionsArray[tag].amount
         }
         let newRatio = Float(CGFloat(selectedBudget!.currentBalence/selectedBudget!.initialBalence))
-        budgetProgressView.animateView(from: budgetProgressView.progress, to: newRatio, in: Double(newRatio + 0.2))
+        budgetProgressView.animateView(from: budgetProgressView.progress, to: newRatio, in: 1.0)
         // budgetProgressView.progress = newRatio
         balenceLabel.text = String(format: "$%.02f", selectedBudget!.currentBalence)
         
@@ -172,51 +174,43 @@ extension TransactionViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let transaction = transactionsArray[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionCell") as! TransactionTableViewCell
+        
         cell.delegate = self
-        var color = UIColor(red:0.47, green:1.00, blue:0.45, alpha:1.0)
-        cell.isSavings = transaction.isIncome
-        cell.toggleTransactionOutlet.setTitleColor(UIColor(named: "IncomeBlueColor"), for: .normal)
-        if transaction.isIncome {
-            color = UIColor(red:0.00, green:0.86, blue:1.00, alpha:1.0)
-            cell.toggleTransactionOutlet.setTitleColor(UIColor(named: "IncomeBlueColor"), for: .normal)
-            cell.toggleTransactionOutlet.setTitle("Savings", for: .normal)
-        } else {
-            cell.toggleTransactionOutlet.setTitleColor(UIColor(named: "ExpenseGreenColor"), for: .normal)
-            cell.toggleTransactionOutlet.setTitle("Expense", for: .normal)
-        }
-        cell.amountTextField.textColor = color
+        cell.isSavings = transaction.isIncome        
         cell.nameTextField.text = transaction.name
-        cell.nameTextField.tag = indexPath.row
+        // cell.nameTextField.tag = indexPath.row
         cell.tag = indexPath.row
-        cell.amountTextField.tag = indexPath.row
+        // cell.amountTextField.tag = indexPath.row
         cell.amountTextField.text = String(format: "$%.02f", transaction.amount)
         if transaction.name == nil {
-            cell.nameTextField.becomeFirstResponder()
+            // cell.nameTextField.becomeFirstResponder()
             // print("FirstResponder")
         }
         cell.backgroundColor  = UIColor.clear
-        cell.contentView.layer.cornerRadius = 10
-        cell.contentView.layer.masksToBounds = true
-       print("loading")
-        if indexPath.row % 2 == 0 {
-            // cell.backgroundColor = UIColor(named: "CellColor")
-            cell.contentView.backgroundColor = UIColor(named: "CellColor2")
-            cell.contentView.setNeedsDisplay()
-            print("Color")
-        } else {
-            cell.contentView.backgroundColor = UIColor(named: "CellColor")
-            cell.contentView.setNeedsDisplay()
-        }
+       
         return cell
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let transaction = transactionsArray[indexPath.row]
+        let tranCell = cell as! TransactionTableViewCell
+        if transaction.isIncome {
+            tranCell.amountTextField.textColor = UIColor(named: "IncomeBlueColor")
+            tranCell.toggleTransactionOutlet.setTitleColor(UIColor(named: "IncomeBlueColor"), for: .normal)
+            tranCell.toggleTransactionOutlet.setTitle("Savings", for: .normal)
+        } else {
+            tranCell.amountTextField.textColor = UIColor(named: "ExpenseGreenColor")
+            tranCell.toggleTransactionOutlet.setTitleColor(UIColor(named: "ExpenseGreenColor"), for: .normal)
+            tranCell.toggleTransactionOutlet.setTitle("Expense", for: .normal)
+        }
+        
+        
+        
         if indexPath.row % 2 == 0 {
             // cell.backgroundColor = UIColor(named: "CellColor")
-            cell.contentView.backgroundColor = UIColor(named: "CellColor2")
-            print("Color")
+            tranCell.contentView.backgroundColor = UIColor(named: "CellColor2")
         } else {
-            cell.contentView.backgroundColor = UIColor(named: "CellColor")
+            tranCell.contentView.backgroundColor = UIColor(named: "CellColor")
         }
     
     }
@@ -231,16 +225,6 @@ extension TransactionViewController : UITableViewDataSource {
         return 1
     }
     
-    private func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 15
-        
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView()
-        view.backgroundColor = UIColor.clear
-        return view
-    }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -255,7 +239,7 @@ extension TransactionViewController : UITableViewDataSource {
                 selectedBudget!.currentBalence = selectedBudget!.currentBalence + transaction.amount
             }
             let newRatio = Float(CGFloat(selectedBudget!.currentBalence/selectedBudget!.initialBalence))
-            budgetProgressView.animateView(from: budgetProgressView.progress, to: newRatio, in: Double(newRatio + 0.2))
+            budgetProgressView.animateView(from: budgetProgressView.progress, to: newRatio, in: 1.0)
             // budgetProgressView.progress = newRatio
             balenceLabel.text = String(format: "$%.02f", selectedBudget!.currentBalence)
             
