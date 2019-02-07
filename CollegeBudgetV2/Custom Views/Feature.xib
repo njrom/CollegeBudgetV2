@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddPopupView" customModule="CustomUIViews" customModuleProvider="target">
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <real key="value" value="40"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="addBudgetStack" destination="Zcs-gz-LAY" id="Atb-iG-lJJ"/>
+                <outlet property="addButton" destination="j4a-r3-jnJ" id="bDd-d3-81k"/>
+                <outlet property="addTransactionStack" destination="AQf-rO-5sZ" id="lvO-gP-hQY"/>
+                <outlet property="containerView" destination="iN0-l3-epB" id="LqJ-o6-Klq"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="365" height="250"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Zcs-gz-LAY">
+                    <rect key="frame" x="20" y="25" width="241.5" height="75"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xey-8v-123">
+                            <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="75" id="gZT-iu-bHw"/>
+                                <constraint firstAttribute="width" constant="75" id="z62-4q-Ihy"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Budget" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQq-jF-wEk">
+                            <rect key="frame" x="95" y="0.0" width="146.5" height="75"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="26"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="AQf-rO-5sZ">
+                    <rect key="frame" x="20" y="151" width="294" height="75"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bXI-Q1-dDT">
+                            <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="75" id="MUV-bp-urm"/>
+                                <constraint firstAttribute="width" constant="75" id="u5v-cL-Dnt"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Transaction" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="17W-MP-Sf4">
+                            <rect key="frame" x="92" y="0.0" width="202" height="75"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="26"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j4a-r3-jnJ" customClass="AddButton" customModule="CustomUIViews" customModuleProvider="target">
+                    <rect key="frame" x="297.5" y="12.5" width="55" height="55"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="55" id="6MK-GK-pP3"/>
+                        <constraint firstAttribute="height" constant="55" id="R70-Of-QtI"/>
+                    </constraints>
+                    <state key="normal" image="plus"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.96078431369999995" green="0.74117647060000003" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Zcs-gz-LAY" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" multiplier="1:2" id="Rzy-Dw-fgX"/>
+                <constraint firstItem="j4a-r3-jnJ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="12.5" id="erz-0N-Awc"/>
+                <constraint firstItem="Zcs-gz-LAY" firstAttribute="leading" secondItem="AQf-rO-5sZ" secondAttribute="leading" id="hRa-Qh-gE8"/>
+                <constraint firstItem="AQf-rO-5sZ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" multiplier="3:2" constant="1" id="iuc-kM-8bF"/>
+                <constraint firstItem="Zcs-gz-LAY" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="p1P-0j-4cG"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="j4a-r3-jnJ" secondAttribute="trailing" constant="12.5" id="pp5-0a-IT2"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="76.799999999999997" y="-154.72263868065968"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="plus" width="384" height="384"/>
+    </resources>
+</document>

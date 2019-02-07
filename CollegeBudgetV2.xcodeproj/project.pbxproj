@@ -21,6 +21,9 @@
 		AF73D26021D83A4800ED98C7 /* BudgetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF73D25F21D83A4800ED98C7 /* BudgetTableViewCell.swift */; };
 		AF73D26221D83EFF00ED98C7 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF73D26121D83EFF00ED98C7 /* CircularProgressView.swift */; };
 		AFB0514921E1A6A1005DE883 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB0514821E1A6A1005DE883 /* PopupViewController.swift */; };
+		AFCA0E782200C1CE000C9AE0 /* Feature.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFCA0E772200C1CE000C9AE0 /* Feature.xib */; };
+		AFCA0E7A2200C1DE000C9AE0 /* AddPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCA0E792200C1DE000C9AE0 /* AddPopupView.swift */; };
+		AFCA0E7C2200C1E6000C9AE0 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCA0E7B2200C1E6000C9AE0 /* AddButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		AF73D25F21D83A4800ED98C7 /* BudgetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTableViewCell.swift; sourceTree = "<group>"; };
 		AF73D26121D83EFF00ED98C7 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		AFB0514821E1A6A1005DE883 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
+		AFCA0E772200C1CE000C9AE0 /* Feature.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Feature.xib; sourceTree = "<group>"; };
+		AFCA0E792200C1DE000C9AE0 /* AddPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPopupView.swift; sourceTree = "<group>"; };
+		AFCA0E7B2200C1E6000C9AE0 /* AddButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +91,9 @@
 		AF6D2B9E21DC23440079479A /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				AFCA0E7B2200C1E6000C9AE0 /* AddButton.swift */,
+				AFCA0E792200C1DE000C9AE0 /* AddPopupView.swift */,
+				AFCA0E772200C1CE000C9AE0 /* Feature.xib */,
 				AF73D26121D83EFF00ED98C7 /* CircularProgressView.swift */,
 				AF07E7A221EEB3730096A14A /* ActionButtonItem.swift */,
 				AF07E7A421EEB38A0096A14A /* ActionButton.swift */,
@@ -181,6 +190,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFCA0E782200C1CE000C9AE0 /* Feature.xib in Resources */,
 				AF0736BC21D0734A00CA10B7 /* LaunchScreen.storyboard in Resources */,
 				AF0736B921D0734A00CA10B7 /* Assets.xcassets in Resources */,
 				AF0736B421D0734900CA10B7 /* Main.storyboard in Resources */,
@@ -199,11 +209,13 @@
 				AF0736AF21D0734900CA10B7 /* AppDelegate.swift in Sources */,
 				AF07E7A721EFBD930096A14A /* CurrencyField.swift in Sources */,
 				AF6D2B9D21DC231F0079479A /* TransactionViewController.swift in Sources */,
+				AFCA0E7A2200C1DE000C9AE0 /* AddPopupView.swift in Sources */,
 				AF73D26021D83A4800ED98C7 /* BudgetTableViewCell.swift in Sources */,
 				AF73D26221D83EFF00ED98C7 /* CircularProgressView.swift in Sources */,
 				AF07E7A321EEB3730096A14A /* ActionButtonItem.swift in Sources */,
 				AF0736B721D0734900CA10B7 /* CollegeBudgetV2.xcdatamodeld in Sources */,
 				AFB0514921E1A6A1005DE883 /* PopupViewController.swift in Sources */,
+				AFCA0E7C2200C1E6000C9AE0 /* AddButton.swift in Sources */,
 				AF07E7A521EEB38A0096A14A /* ActionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

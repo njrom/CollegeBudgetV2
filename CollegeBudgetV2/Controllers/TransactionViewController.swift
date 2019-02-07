@@ -17,7 +17,7 @@ class TransactionViewController: UIViewController, TransactionCellDelegate {
     @IBOutlet weak var balenceLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var budgetProgressView: CircularProgressView!
-    
+    let generator = UIImpactFeedbackGenerator(style: .heavy)
 
     
     var transactionsArray = [Transaction]()
@@ -78,6 +78,7 @@ class TransactionViewController: UIViewController, TransactionCellDelegate {
     
     
     @IBAction func addTransactionHit(_ sender: UIButton) {
+        generator.impactOccurred()
         print(transactionsArray)
         let newTransaction = Transaction(context: context)
         print("Hit")
@@ -90,10 +91,12 @@ class TransactionViewController: UIViewController, TransactionCellDelegate {
 
         let indexPath = IndexPath(item: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: UITableView.RowAnimation.bottom)
+        tableView.reloadData()
         let cell = tableView.cellForRow(at: indexPath) as! TransactionTableViewCell
-        cell.nameTextField.becomeFirstResponder()
+        
         cell.amountTextField.addDoneButtonOnKeyboard()
-        //tableView.reloadData()
+        cell.nameTextField.becomeFirstResponder()
+        
         
 
     }

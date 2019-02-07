@@ -35,7 +35,7 @@ class BudgetViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupButtons()
+
         // Do any additional setup after loading the view, typically from a nib.
         tableView.rowHeight = 80.0
         tableView.delegate = self
@@ -55,7 +55,7 @@ class BudgetViewController: UIViewController {
         self.title = dateString
         self.navigationItem.title = dateString
         
-        
+        // addPopupView.addButton.addTarget(self, action: #selector(ViewController.animateAddButton(sender:)), for: UIControl.Event.touchUpInside)
         
         // addTestData()
         
@@ -256,12 +256,39 @@ extension BudgetViewController: UITableViewDataSource {
         budgetCell.progressView.progress = Float(CGFloat((budget.currentBalence/budget.initialBalence)))
     }
     
+//    @objc func animateAddButton(sender: UIButton) {
+//        if !addButtonIsActive {
+//            self.widthConstraint.constant = self.view.frame.width - 25
+//            self.heightConstraint.constant = popupHeight
+//        } else {
+//            self.widthConstraint.constant = 80
+//            self.heightConstraint.constant = 80
+//            self.addPopupView.addBudgetStack.isHidden = true
+//            self.addPopupView.addTransactionStack.isHidden = true
+//            
+//        }
+//        
+//        UIView.animate(withDuration: 0.3, animations: {
+//            self.view.layoutIfNeeded()
+//            
+//            self.addPopupView.containerView.backgroundColor = self.addButtonIsActive ?  UIColor.yellow : UIColor.gray
+//        }, completion: { _ in
+//            if !self.addButtonIsActive {
+//                self.addPopupView.addBudgetStack.isHidden = false
+//                self.addPopupView.addTransactionStack.isHidden = false
+//                self.addButtonIsActive = true
+//            } else {
+//                self.addButtonIsActive = false
+//            }
+//        })
+//        
+//    }
 }
 
 extension BudgetViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 15
+        return 10
         
     }
     
