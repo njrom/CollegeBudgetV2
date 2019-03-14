@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeaderView" customModule="CollegeBudgetV2" customModuleProvider="target">
+            <connections>
+                <outlet property="circularProgressView" destination="lr9-XA-pr1" id="3hW-ph-2cH"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="1Ek-WJ-AwQ"/>
+                <outlet property="currentBalanceLabel" destination="kad-OI-yed" id="cpv-TA-5gY"/>
+                <outlet property="currentBalanceTitleLabel" destination="Sux-7U-tbU" id="gUK-YK-QqH"/>
+                <outlet property="headerTitleLabel" destination="hVx-25-UV5" id="O2Y-Sa-Qb6"/>
+                <outlet property="secondaryBalanceLabel" destination="LHp-hh-pf8" id="pPW-Md-fey"/>
+                <outlet property="secondaryTitleLabel" destination="99Y-9I-yla" id="eHh-5b-aUH"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entertainment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVx-25-UV5">
+                    <rect key="frame" x="15" y="10" width="259.5" height="48"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="40"/>
+                    <color key="textColor" name="HeaderTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fky-Mw-NVp">
+                    <rect key="frame" x="16" y="66" width="232.5" height="68.5"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Balance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sux-7U-tbU">
+                            <rect key="frame" x="0.0" y="0.0" width="232.5" height="36"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="30"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$3,300.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kad-OI-yed">
+                            <rect key="frame" x="56" y="36" width="120.5" height="32.5"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="27"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lr9-XA-pr1" customClass="CircularProgressView" customModule="CollegeBudgetV2" customModuleProvider="target">
+                    <rect key="frame" x="285" y="85" width="70" height="70"/>
+                    <color key="backgroundColor" red="0.45009386540000001" green="0.98132258650000004" blue="0.4743030667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="gOg-vt-bt6"/>
+                        <constraint firstAttribute="height" constant="70" id="sbI-uN-3xT"/>
+                    </constraints>
+                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dWm-Do-3E5">
+                    <rect key="frame" x="16" y="148.5" width="159.5" height="16.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Savings Goal:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="99Y-9I-yla">
+                            <rect key="frame" x="0.0" y="0.0" width="87" height="16.5"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$4,000.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHp-hh-pf8">
+                            <rect key="frame" x="97" y="0.0" width="62.5" height="16.5"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" name="CellColor"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="lr9-XA-pr1" secondAttribute="trailing" constant="20" id="2ep-Sk-QuV"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="lr9-XA-pr1" secondAttribute="bottom" constant="20" id="DQF-QN-U52"/>
+                <constraint firstItem="hVx-25-UV5" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="JIt-5v-7UL"/>
+                <constraint firstItem="hVx-25-UV5" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="PVp-si-sLL"/>
+                <constraint firstItem="99Y-9I-yla" firstAttribute="leading" secondItem="Sux-7U-tbU" secondAttribute="leading" id="UI4-bT-er2"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="dWm-Do-3E5" secondAttribute="bottom" constant="10" id="gwu-PE-ReE"/>
+                <constraint firstItem="dWm-Do-3E5" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="scj-T7-6ss"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="132" y="-68.815592203898049"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="CellColor">
+            <color red="0.090196078431372548" green="0.090196078431372548" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="HeaderTextColor">
+            <color red="0.96078431372549022" green="0.74117647058823533" blue="0.023529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

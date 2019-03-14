@@ -241,7 +241,7 @@ extension BudgetViewController: UITableViewDataSource {
             cell.remainingLabel.text = String(format: "Remaining: $%.02f", budget.currentBalence)
         }
         cell.remainingLabel.textColor = color
-        cell.progressView.progressLayer.strokeColor = color.cgColor
+        cell.progressView.fowardProgressLayer.strokeColor = color.cgColor
         cell.iconImageView?.image = UIImage(named: budget.imageName!)
         cell.contentView.backgroundColor = UIColor(named: "DetailColor")
         cell.backgroundColor = UIColor.clear
