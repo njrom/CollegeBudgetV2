@@ -235,6 +235,7 @@ extension BudgetViewController: UITableViewDataSource {
         }
         
         cell.nameLabel.text = budget.name!
+        
         if budget.isSavings {
             cell.remainingLabel.text = String(format: "Saved: $%.02f", budget.currentBalence)
         } else {
@@ -242,6 +243,7 @@ extension BudgetViewController: UITableViewDataSource {
         }
         cell.remainingLabel.textColor = color
         cell.progressView.fowardProgressLayer.strokeColor = color.cgColor
+        cell.progressView.backwardProgressLayer.strokeColor = UIColor.red.cgColor
         cell.iconImageView?.image = UIImage(named: budget.imageName!)
         cell.contentView.backgroundColor = UIColor(named: "DetailColor")
         cell.backgroundColor = UIColor.clear
@@ -253,7 +255,16 @@ extension BudgetViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let budget = budgets[indexPath.section]
         let budgetCell = cell as! BudgetTableViewCell
-        budgetCell.progressView.progress = Float(CGFloat((budget.currentBalence/budget.initialBalence)))
+        if budget.currentBalence < 0 {
+            budgetCell.progressView.negativeProgress = Float(CGFloat((abs(budget.currentBalence)/budget.initialBalence)))
+            budgetCell.progressView.progress = 0
+            budgetCell.progressView.fowardProgressLayer.strokeColor = UIColor.clear.cgColor
+        } else {
+            budgetCell.progressView.negativeProgress = 0
+            budgetCell.progressView.progress = Float(CGFloat((budget.currentBalence/budget.initialBalence)))
+            budgetCell.progressView.backwardProgressLayer.strokeColor = UIColor.clear.cgColor
+        }
+        
     }
     
 //    @objc func animateAddButton(sender: UIButton) {

@@ -27,6 +27,12 @@ class CircularProgressView: UIView, CAAnimationDelegate {
         }
     }
     
+    var negativeProgress : Float = 0 {
+        willSet(newValue) {
+            backwardProgressLayer.strokeEnd = CGFloat(newValue)
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         bgPath1 = UIBezierPath()
@@ -223,7 +229,8 @@ class CircularProgressView: UIView, CAAnimationDelegate {
     
     
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        self.progress = self.end
+        
+        
         if postiveToNegative {
             self.fowardProgressLayer.strokeColor = UIColor.red.cgColor
             postiveToNegative = false

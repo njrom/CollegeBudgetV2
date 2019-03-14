@@ -42,6 +42,7 @@
 		AF07E7A621EFBD930096A14A /* CurrencyField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyField.swift; sourceTree = "<group>"; };
 		AF62BE302239EA16003FFB92 /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		AF62BE322239EA1E003FFB92 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		AF62BE342239EF65003FFB92 /* CollegeBudgetV2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CollegeBudgetV2.entitlements; sourceTree = "<group>"; };
 		AF6D2B9C21DC231F0079479A /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
 		AF6D2BA221DC28E60079479A /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		AF73D25F21D83A4800ED98C7 /* BudgetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTableViewCell.swift; sourceTree = "<group>"; };
@@ -82,6 +83,7 @@
 		AF0736AD21D0734900CA10B7 /* CollegeBudgetV2 */ = {
 			isa = PBXGroup;
 			children = (
+				AF62BE342239EF65003FFB92 /* CollegeBudgetV2.entitlements */,
 				AF0736BD21D0734A00CA10B7 /* Info.plist */,
 				AF6D2B9F21DC23580079479A /* Support Files */,
 				AF6D2B9E21DC23440079479A /* Custom Views */,
@@ -170,6 +172,11 @@
 				TargetAttributes = {
 					AF0736AA21D0734900CA10B7 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.DataProtection = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
