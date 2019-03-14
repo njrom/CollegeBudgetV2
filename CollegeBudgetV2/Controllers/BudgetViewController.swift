@@ -104,7 +104,7 @@ class BudgetViewController: UIViewController {
             
             if let indexPath = tableView.indexPathForSelectedRow {
                 destinationVC.selectedBudget = budgets[indexPath.section]
-                destinationVC.title = budgets[indexPath.section].name
+                // destinationVC.title = budgets[indexPath.section].name
             }
             // destinationVC.tableView.reloadData()
         }

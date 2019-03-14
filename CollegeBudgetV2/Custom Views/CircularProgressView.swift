@@ -8,7 +8,7 @@
 
 
 import UIKit
-
+//TODO: Need to build out a seperate header view that incapsulates all of the upper label info 
 class CircularProgressView: UIView, CAAnimationDelegate {
     
     var bgPath: UIBezierPath!
@@ -67,6 +67,7 @@ class CircularProgressView: UIView, CAAnimationDelegate {
     }
     
     func animateView(from start: Float, to end: Float, in duration: Double) {
+        //TODO: do update this area to animate the remaining label as well
         progressLayer.strokeEnd = CGFloat(start)
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         basicAnimation.toValue = end
@@ -86,4 +87,5 @@ class CircularProgressView: UIView, CAAnimationDelegate {
     }
     
 }
+
 

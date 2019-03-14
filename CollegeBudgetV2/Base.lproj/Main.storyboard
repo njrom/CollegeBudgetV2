@@ -81,50 +81,14 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-1098" y="700"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="T2E-lB-3VA">
-            <objects>
-                <viewController id="XIe-Mo-qeb" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="tLW-El-tv6">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gy1-FQ-beY">
-                                <rect key="frame" x="20" y="40" width="335" height="227"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w8c-FR-nrk">
-                                        <rect key="frame" x="30" y="20" width="105" height="48"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="40"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="gy1-FQ-beY" firstAttribute="leading" secondItem="wRw-cb-Q6f" secondAttribute="leading" constant="20" id="6kI-Q6-NHj"/>
-                            <constraint firstItem="wRw-cb-Q6f" firstAttribute="bottom" secondItem="gy1-FQ-beY" secondAttribute="bottom" constant="400" id="ADi-k5-WGm"/>
-                            <constraint firstItem="gy1-FQ-beY" firstAttribute="top" secondItem="wRw-cb-Q6f" secondAttribute="top" constant="20" id="aLO-tz-bIo"/>
-                            <constraint firstItem="wRw-cb-Q6f" firstAttribute="trailing" secondItem="gy1-FQ-beY" secondAttribute="trailing" constant="20" id="ceq-gL-BjE"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="wRw-cb-Q6f"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pul-4N-d2O" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-311" y="700"/>
+            <point key="canvasLocation" x="-1098" y="672"/>
         </scene>
         <!--Transaction View Controller-->
         <scene sceneID="6gq-VL-rH1">
             <objects>
                 <viewController id="n9C-iv-vpa" customClass="TransactionViewController" customModule="CollegeBudgetV2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iFz-M0-s8p">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mIt-k2-FRY">
@@ -193,7 +157,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WHb-8X-bir">
-                                <rect key="frame" x="0.0" y="90" width="375" height="461"/>
+                                <rect key="frame" x="0.0" y="90" width="375" height="513"/>
                                 <color key="backgroundColor" name="DetailColor"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -258,7 +222,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZG-Qj-JXC">
-                                <rect key="frame" x="316" y="469" width="34" height="72"/>
+                                <rect key="frame" x="316" y="521" width="34" height="72"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="50"/>
                                 <state key="normal" title="+">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -292,7 +256,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nfg-hp-RB4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-260" y="-89.505247376311857"/>
+            <point key="canvasLocation" x="-358" y="-45"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sd9-jJ-0E1">
@@ -300,8 +264,8 @@
                 <navigationController extendedLayoutIncludesOpaqueBars="YES" id="XAV-Bu-3Ms" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" barStyle="black" translucent="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" largeTitles="YES" id="m22-9w-qGV">
-                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="m22-9w-qGV">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" name="FrameColor"/>
@@ -332,7 +296,7 @@
             <objects>
                 <viewController id="kyb-eu-408" customClass="BudgetViewController" customModule="CollegeBudgetV2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4DO-oa-2nS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="549"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ctn-Is-SOU">
@@ -340,7 +304,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T3A-u0-iLe">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="549"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" name="FrameColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BudgetCell" rowHeight="80" id="vH0-Hw-6Fc" customClass="BudgetTableViewCell" customModule="CollegeBudgetV2" customModuleProvider="target">
@@ -401,7 +365,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oBv-bg-Ajk" customClass="AddPopupView" customModule="CollegeBudgetV2" customModuleProvider="target">
-                                <rect key="frame" x="275" y="449" width="80" height="80"/>
+                                <rect key="frame" x="275" y="503" width="80" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="FSO-IY-MNw"/>
@@ -435,7 +399,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HgX-m6-C6j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1098" y="-45"/>
+            <point key="canvasLocation" x="-1098" y="-44"/>
         </scene>
     </scenes>
     <resources>
